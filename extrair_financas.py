@@ -66,14 +66,15 @@ def linhas(texto):
             yield {"cabecalho": linha}
 
 
-def trecho(paginas, inicio, fim=None):
-    """Texto entre o título de uma demonstração ou nota e o título seguinte."""
-    for texto in paginas:
+def trecho(paginas, inicio, fim=None, paginas_seguintes=0):
+    """Texto entre o título de uma demonstração ou nota e o título seguinte. Por padrão
+    fica na página do título; paginas_seguintes permite atravessar páginas."""
+    for numero, texto in enumerate(paginas):
         if texto.lstrip().startswith("ÍNDICE"):
             continue  # o sumário repete os títulos das seções
         posicao = re.search(inicio, texto)
         if posicao:
-            resto = texto[posicao.end():]
+            resto = "\n".join([texto] + paginas[numero + 1:numero + 1 + paginas_seguintes])[posicao.end():]
             if fim:
                 corte = re.search(fim, resto)
                 resto = resto[:corte.start()] if corte else resto
@@ -186,6 +187,7 @@ def extrair(caminho_pdf):
         if "conta" in item and not item["conta"]
     ][-1]
     outras = tabela(trecho(paginas, r"19\.\s+Outras receitas, líquidas", r"www\.vilanovafc"))
+    atletas = tabela(trecho(paginas, r"Detalhamento das movimentações de atletas", r"Principais vendas"))
     intangivel = tabela(trecho(paginas, r"Direitos econômicos - Movimentação", r"\(i\) Adições"))
     trabalhistas = tabela(trecho(paginas, r"9\.\s+Obrigações trabalhistas e sociais", r"\(i\) Dívida"))
     tributarias = tabela(trecho(paginas, r"10\.\s+Obrigações tributárias", r"\(i\) Dívida"))
@@ -300,6 +302,48 @@ def extrair(caminho_pdf):
 
     waiver = re.search(r"aproximadamente R\$ ([\d,]+) milhões", caixa_texto)
 
+    # --- Venda de atletas: bruto e custos (nota 19, item i) ---
+    venda_bruta = conta(atletas, r"^Venda de atletas e participações")
+    comissoes = conta(atletas, r"^Comissões")
+    gastos_venda = conta(atletas, r"^Gastos para viabilizar")
+    solidariedade = conta(atletas, r"^Mecanismo de solidariedade")
+    conferir("Venda de atletas (nota 19 i)", soma([venda_bruta, comissoes, gastos_venda, solidariedade]), venda_atletas)
+
+    # --- Parecer do auditor: tipo de opinião e valores das ressalvas ---
+    relatorio = trecho(paginas, r"RELATÓRIO DO AUDITOR INDEPENDENTE SOBRE", r"Responsabilidades da administração", paginas_seguintes=3)
+    compacto = re.sub(r"\s+", "", relatorio)                  # o PDF cola palavras nesse trecho
+    if "Opiniãoadversa" in compacto:
+        opiniao = "adversa"
+    elif "Abstençãodeopinião" in compacto:
+        opiniao = "abstenção de opinião"
+    elif "Opiniãocomressalva" in compacto:
+        opiniao = "com ressalva"
+    else:
+        opiniao = "sem ressalva"
+    receber = re.search(r"contasarecebernomontantedeR\$([\d.]+)mil", compacto)
+    imobilizado = re.search(r"nomontantedeR\$([\d.]+)mil,nãohavendoidentificação", compacto)
+    ressalvas = []
+    if receber:
+        ressalvas.append({"tema": "Contas a receber", "valor": valor(receber.group(1)),
+                          "motivo": "sem evidência suficiente de que os créditos serão recebidos"})
+    if imobilizado:
+        ressalvas.append({"tema": "Imobilizado", "valor": valor(imobilizado.group(1)),
+                          "motivo": "sem controle adequado dos bens, avaliação de vida útil e teste de recuperabilidade"})
+    if opiniao == "com ressalva" and not ressalvas:
+        raise ValueError("Parecer com ressalva, mas os valores das ressalvas não foram encontrados")
+    fim_parecer = trecho(paginas, r"Goiânia\s*-\s*GO,", r"www\.vilanovafc")
+    data_parecer = re.search(r"(\d{1,2} de \w+ de \d{4})", "Goiânia -GO, " + fim_parecer)
+    auditora = re.search(r"([A-Z][\wÀ-ú]*Auditoria[\wÀ-ú /.]*Ltda)", fim_parecer)
+    auditoria = {
+        "opiniao": opiniao,
+        "auditora": re.sub(r"(?<=[a-z])(?=Auditoria)", " ", auditora.group(1)).strip() if auditora else None,
+        "data": data_parecer.group(1) if data_parecer else None,
+        "ressalvas": ressalvas,
+        "continuidade": "continuidadeoperacional" in compacto,
+        "partes_relacionadas": "PartesRelacionadas" in compacto,
+    }
+    print(f"   OK  Parecer do auditor: opinião {opiniao} ({len(ressalvas)} ressalvas)")
+
     def grupo(nome):
         return next(g for g in grupos if g["nome"].startswith(nome))
 
@@ -314,15 +358,19 @@ def extrair(caminho_pdf):
         "receita_liquida": receita_liquida,
         "receita_recorrente": {ano: receita_liquida[ano] - lfu[ano] for ano in ("atual", "anterior")},
         "venda_atletas": venda_atletas,
+        "venda_atletas_bruta": venda_bruta,
+        "custos_venda_atletas": soma([comissoes, gastos_venda]),
         "receitas": [
             serie(grupo("Diversos"), "Diversos (inclui LFU)", detalhe="Adesão à LFU, quadro social, loterias e bares"),
             serie(grupo("Patrocínio"), "Patrocínio e licenciamento", detalhe="Patrocínios, publicidade e royalties"),
-            serie(venda_atletas, "Venda de atletas", detalhe="Resultado líquido das negociações"),
+            serie(venda_atletas, "Venda de atletas (líquida)",
+                  detalhe=f"Venda bruta de R$ {venda_bruta['atual'] / 1000:.1f} mi e solidariedade de R$ {solidariedade['atual'] / 1000:.1f} mi, menos comissões e gastos".replace(".", ",")),
             serie(grupo("Mídia"), "Mídia e publicidade", detalhe="Participação em competições e TV"),
             serie(grupo("Operações de jogos"), "Operações de jogos", detalhe="Bilheteria e Sócio Tigrão"),
         ],
         "destaques_receita": [
             serie(item("Bilheteria"), "Bilheteria"),
+            serie(item("Sócio Tigrão"), "Sócio Tigrão"),
             serie(item("Patrocínios e publicidade"), "Patrocínios e publicidade"),
             serie(lfu, "Adesão à LFU"),
             serie(item("Direitos de transmissão"), "Direitos de transmissão"),
@@ -351,7 +399,7 @@ def extrair(caminho_pdf):
             "itens": [
                 serie(mutuos, "Mútuos com conselheiros", detalhe="Sem juros em 2025 (waiver)"),
                 serie(obrig_trab, "Obrigações trabalhistas", detalhe=f"Dívida ativa previdenciária de R$ {div_prev['atual'] / 1000:.1f} mi".replace(".", ",")),
-                serie(outros_passivos, "Outros passivos", detalhe="Provisões, empréstimos e antecipações"),
+                serie(outros_passivos, "Outros passivos", detalhe="Provisões, empréstimos e receitas recebidas antecipadamente"),
                 serie(obrig_trib, "Obrigações tributárias", detalhe=f"Dívida ativa fiscal de R$ {div_fiscal['atual'] / 1000:.1f} mi".replace(".", ",")),
                 serie(transf, "Transferência de jogadores", detalhe="A pagar por contratações"),
             ],
@@ -364,8 +412,8 @@ def extrair(caminho_pdf):
         },
         "caixa": {
             "atividades": [
-                serie(fc_operacional, "Operacional", detalhe="Gerado pelo dia a dia do clube"),
-                serie(fc_investimentos, "Investimentos", detalhe="Quase tudo em direitos de atletas"),
+                serie(fc_operacional, "Operacional", detalhe="Inclui adiantamentos recebidos e contas ainda a pagar"),
+                serie(fc_investimentos, "Investimentos", detalhe="Direitos de atletas (em 2024, também obras e equipamentos)"),
                 serie(fc_financiamentos, "Financiamentos", detalhe="Empréstimos captados menos pagos"),
             ],
             "inicial": caixa_inicial,
@@ -381,6 +429,7 @@ def extrair(caminho_pdf):
             "saldo_final": saldo_final,
         },
         "waiver_mi": float(waiver.group(1).replace(",", ".")) if waiver else None,
+        "auditoria": auditoria,
         "ssf": ssf,
         "ssf_limites": limites_ssf,
     }

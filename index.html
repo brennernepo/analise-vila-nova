@@ -41,19 +41,19 @@
             <b id="headerGames">-- de 38</b>
           </div>
           <div>
-            <span>Escopo</span>
-            <b>Casa e fora</b>
+            <span>Posição atual</span>
+            <b id="headerPosition">--</b>
           </div>
         </div>
       </section>
 
       <section class="filter-row" aria-label="Filtro por mando de campo">
         <div class="segmented" id="venueFilter">
-          <button class="active" data-filter="Todos">Todos os jogos</button>
-          <button data-filter="Casa">Em casa</button>
-          <button data-filter="Fora">Fora</button>
+          <button type="button" class="active" data-filter="Todos" aria-pressed="true">Todos os jogos</button>
+          <button type="button" data-filter="Casa" aria-pressed="false">Em casa</button>
+          <button type="button" data-filter="Fora" aria-pressed="false">Fora</button>
         </div>
-        <p id="filterContext">Visão geral da campanha</p>
+        <p id="filterContext" aria-live="polite">Visão geral da campanha</p>
       </section>
 
       <section class="kpi-grid" aria-label="Indicadores principais">
@@ -94,36 +94,36 @@
             <p class="section-kicker">MODELO DE CENÁRIOS</p>
             <h2 id="remainingTitle">As rodadas finais</h2>
           </div>
-          <p>Probabilidades estimadas pelo desempenho em casa e fora — acompanhadas do caminho necessário em pontos.</p>
+          <p id="probabilityIntro">Chances calculadas simulando o restante do campeonato inteiro, com a força de cada clube e as regras do acesso.</p>
         </div>
         <div class="probability-grid">
           <article class="probability-card access-card">
-            <div class="probability-card-head"><span>Chance estimada de acesso</span><i>↑</i></div>
+            <div class="probability-card-head"><span id="accessTitle">Chance estimada de acesso</span><i>↑</i></div>
             <div class="probability-value"><strong id="accessProbability">--</strong><em id="accessLevel">--</em></div>
             <div class="probability-bar"><i id="accessBar"></i></div>
             <div class="probability-facts">
-              <div><span>Acesso direto</span><b id="directProbability">--</b></div>
-              <div><span>Via playoffs</span><b id="playoffAccessProbability">--</b></div>
+              <div><span id="directLabel">Direto (1º ou 2º)</span><b id="directProbability">--</b></div>
+              <div><span id="playoffAccessLabel">Pelo mata-mata</span><b id="playoffAccessProbability">--</b></div>
             </div>
             <p id="accessDetail">--</p>
           </article>
           <article class="probability-card playoff-card">
-            <div class="probability-card-head"><span>Chance de alcançar o G6</span><i>G6</i></div>
+            <div class="probability-card-head"><span id="playoffTitle">Chance de terminar no G6</span><i>G6</i></div>
             <div class="probability-value"><strong id="playoffProbability">--</strong><em id="playoffLevel">--</em></div>
             <div class="probability-bar"><i id="playoffBar"></i></div>
             <div class="probability-facts">
-              <div><span>Meta usada</span><b>60 pts</b></div>
-              <div><span>A conquistar</span><b id="playoffPointsNeeded">--</b></div>
+              <div><span id="playoffFactLabel1">Meta usada</span><b id="playoffFact1">--</b></div>
+              <div><span id="playoffFactLabel2">A conquistar</span><b id="playoffPointsNeeded">--</b></div>
             </div>
             <p id="playoffDetail">--</p>
           </article>
           <article class="probability-card relegation-card">
-            <div class="probability-card-head"><span>Risco de rebaixamento</span><i>↓</i></div>
+            <div class="probability-card-head"><span id="relegationTitle">Risco de rebaixamento</span><i>↓</i></div>
             <div class="probability-value"><strong id="relegationProbability">--</strong><em id="relegationLevel">--</em></div>
             <div class="probability-bar"><i id="relegationBar"></i></div>
             <div class="probability-facts">
               <div><span>Chance de ficar</span><b id="survivalProbability">--</b></div>
-              <div><span>Até 45 pontos</span><b id="safetyPointsNeeded">--</b></div>
+              <div><span id="safetyLabel">Até 45 pontos</span><b id="safetyPointsNeeded">--</b></div>
             </div>
             <p id="relegationDetail">--</p>
           </article>
@@ -138,10 +138,24 @@
             <button type="button" id="modelInfoButton">Como calculamos?</button>
           </aside>
         </div>
-        <div class="model-explanation" id="modelExplanation" hidden>
-          <p><b>Modelo:</b> distribuição preditiva bayesiana com os resultados do Vila Nova separados por mando. A faixa de G6 usa 60 pontos, próxima ao ritmo da linha do G6 no fim de setembro; acesso direto, 65, perto do ritmo do 2º colocado; e risco de queda, 44 pontos ou menos, um limite conservador diante das últimas edições. Para a fase de playoffs, foi aplicada chance neutra de 50% no confronto.</p>
-          <p>É uma estimativa de cenário, não uma probabilidade oficial: a base não contém os jogos completos dos outros 19 clubes, critérios de desempate, desfalques ou força dos próximos adversários.</p>
-        </div>
+        <div class="model-explanation" id="modelExplanation" hidden></div>
+
+        <article class="panel race-panel" id="racePanel">
+          <div class="panel-head compact race-head">
+            <div>
+              <p class="section-kicker">CLASSIFICAÇÃO E CHANCES</p>
+              <h2>A corrida pelo acesso</h2>
+            </div>
+            <div class="legend race-legend"><span><i class="zone-direct"></i>Acesso direto</span><span><i class="zone-playoff"></i>Mata-mata</span><span><i class="zone-relegation"></i>Rebaixamento</span></div>
+          </div>
+          <div class="table-wrap race-table">
+            <table>
+              <thead><tr><th>#</th><th>Clube</th><th>J</th><th>Pts</th><th>SG</th><th title="Média de pontos ao fim das 38 rodadas nas simulações">Pts esperados</th><th>Direto</th><th>G6</th><th>Acesso</th><th>Queda</th></tr></thead>
+              <tbody id="raceBody"></tbody>
+            </table>
+          </div>
+          <p class="race-note" id="raceNote"></p>
+        </article>
       </section>
 
       <section class="dashboard-grid" id="evolucao">
@@ -151,11 +165,11 @@
               <p class="section-kicker">RODADA A RODADA</p>
               <h2>Evolução dos pontos</h2>
             </div>
-            <div class="legend"><span><i class="actual"></i>Vila Nova</span><span><i class="pace"></i>Ritmo de 50%</span></div>
+            <div class="legend"><span><i class="actual"></i>Vila Nova</span><span><i class="pace"></i><span id="paceLegend">Ritmo de 50%</span></span></div>
           </div>
           <div class="chart-statline">
             <div><span>Pontuação atual</span><b id="chartCurrentPoints">--</b></div>
-            <div><span>Ritmo de 50%</span><b id="chartPacePoints">--</b></div>
+            <div><span id="paceLabel">Ritmo de 50%</span><b id="chartPacePoints">--</b></div>
             <div id="chartGapCard"><span>Diferença</span><b id="chartGap">--</b></div>
           </div>
           <div class="chart-wrap" id="pointsChart" role="img" aria-label="Gráfico de evolução de pontos"></div>
@@ -217,10 +231,13 @@
           </div>
           <div class="scenario" id="scenarioText"></div>
           <div class="remaining-fixtures">
-            <span>PRÓXIMOS ADVERSÁRIOS</span>
+            <div class="fixtures-head">
+              <span id="fixturesTitle">PRÓXIMOS ADVERSÁRIOS</span>
+              <div class="legend fixture-legend" id="fixtureLegend" hidden><span><i class="win"></i>Vitória</span><span><i class="draw"></i>Empate</span><span><i class="loss"></i>Derrota</span></div>
+            </div>
             <div id="remainingFixtures"></div>
           </div>
-          <small class="method">Simulação considera vitórias e derrotas nos jogos restantes; cada empate reduz a necessidade em 1 ponto.</small>
+          <small class="method" id="scenarioMethod">O caminho mínimo usa o menor número de jogos com pontos: vitórias primeiro e empates para completar a conta.</small>
         </article>
 
         <article class="panel performance-panel">
@@ -279,10 +296,10 @@
             </section>
           </div>
           <div class="halves-insights">
-            <div><span>MAIS PRODUTIVO</span><b id="productiveHalf">--</b></div>
-            <div><span>MAIS VULNERÁVEL</span><b id="vulnerableHalf">--</b></div>
+            <div><span>GOLS MARCADOS · 1º × 2º</span><b id="productiveHalf">--</b><small id="productiveNote">--</small></div>
+            <div><span>GOLS SOFRIDOS · 1º × 2º</span><b id="vulnerableHalf">--</b><small id="vulnerableNote">--</small></div>
             <div class="result-change-card"><span>MUDANÇA APÓS O INTERVALO</span><b id="improvedResults">--</b><small id="unchangedResults">--</small></div>
-            <div><span>SALDO DAS REAÇÕES</span><b id="pointsSwing">--</b><small>pontos entre o intervalo e o resultado final</small></div>
+            <div><span>PONTOS GANHOS APÓS O INTERVALO</span><b id="pointsSwing">--</b><small>resultado final comparado ao placar do intervalo</small></div>
           </div>
           <div class="analysis-note halves-note">
             <span>LEITURA POR TEMPO</span>
@@ -317,10 +334,12 @@
             <p class="section-kicker">RAIO-X FINANCEIRO · <span class="year-current">--</span></p>
             <h2>As contas do clube</h2>
           </div>
-          <p>Demonstrações financeiras auditadas, comparadas com o exercício anterior. Nos gráficos, valores em R$ milhões.</p>
+          <p id="financeIntro">Demonstrações financeiras auditadas, comparadas com o exercício anterior. Nos gráficos, valores em R$ milhões.</p>
         </div>
 
         <div class="kpi-grid finance-kpis" id="financeKpis"></div>
+
+        <div class="audit-note" id="auditNote" hidden></div>
 
         <div class="finance-grid">
           <article class="panel">
@@ -416,6 +435,7 @@
       <span>Fonte: base local de jogos</span>
     </footer>
   </div>
+  <script src="simulacao_2026.js"></script>
   <script src="financas_2025.js"></script>
   <script src="app.js"></script>
 </body>

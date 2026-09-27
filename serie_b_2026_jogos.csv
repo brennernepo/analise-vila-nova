@@ -1,0 +1,381 @@
+﻿id_jogo,data,status,mandante,visitante,gols_mandante,gols_visitante
+espn_401860064,2026-03-21,finished,Vila Nova,CRB,2,2
+espn_401860065,2026-03-21,finished,Operário-PR,Atlético Goianiense,1,0
+espn_401860069,2026-03-21,finished,Cuiabá,Sport,0,0
+espn_401860070,2026-03-21,finished,Ceará,São Bernardo,1,1
+espn_401860071,2026-03-21,finished,Botafogo-SP,Fortaleza,4,0
+espn_401860062,2026-03-22,finished,Athletic Club,Ponte Preta,2,1
+espn_401860063,2026-03-22,finished,Avaí,Juventude,2,0
+espn_401860066,2026-03-22,finished,Náutico,Criciúma,0,1
+espn_401860067,2026-03-22,finished,Novorizontino,Londrina,1,3
+espn_401860068,2026-03-22,finished,Goiás,América Mineiro,3,1
+espn_401860077,2026-03-31,finished,Fortaleza,Cuiabá,0,0
+espn_401860081,2026-03-31,finished,Juventude,Novorizontino,0,0
+espn_401860072,2026-04-01,finished,América Mineiro,Botafogo-SP,1,2
+espn_401860073,2026-04-01,finished,Sport,Vila Nova,1,1
+espn_401860074,2026-04-01,finished,Ponte Preta,Ceará,1,1
+espn_401860075,2026-04-01,finished,Londrina,Goiás,2,2
+espn_401860078,2026-04-01,finished,Criciúma,Athletic Club,1,1
+espn_401860079,2026-04-01,finished,CRB,Avaí,0,1
+espn_401860080,2026-04-01,finished,Atlético Goianiense,Náutico,1,2
+espn_401860076,2026-04-02,finished,São Bernardo,Operário-PR,1,2
+espn_401860082,2026-04-04,finished,Náutico,Ponte Preta,1,0
+espn_401860084,2026-04-04,finished,Londrina,Sport,1,2
+espn_401860086,2026-04-04,finished,Vila Nova,Atlético Goianiense,2,1
+espn_401860087,2026-04-04,finished,Cuiabá,Ceará,0,2
+espn_401860091,2026-04-04,finished,Fortaleza,Juventude,2,1
+espn_401860083,2026-04-05,finished,Novorizontino,CRB,1,1
+espn_401860088,2026-04-05,finished,Botafogo-SP,São Bernardo,1,2
+espn_401860089,2026-04-05,finished,Avaí,Operário-PR,0,0
+espn_401860090,2026-04-05,finished,Athletic Club,América Mineiro,1,1
+espn_401860085,2026-04-06,finished,Goiás,Criciúma,1,0
+espn_401860096,2026-04-10,finished,Criciúma,Botafogo-SP,1,0
+espn_401860092,2026-04-11,finished,Sport,Avaí,2,2
+espn_401860093,2026-04-11,finished,Ponte Preta,Vila Nova,0,1
+espn_401860095,2026-04-11,finished,Juventude,Goiás,2,0
+espn_401860097,2026-04-11,finished,Ceará,Náutico,1,0
+espn_401860094,2026-04-12,finished,Operário-PR,Cuiabá,0,0
+espn_401860098,2026-04-12,finished,CRB,Athletic Club,2,3
+espn_401860099,2026-04-12,finished,Atlético Goianiense,Londrina,2,1
+espn_401860100,2026-04-12,finished,América Mineiro,Novorizontino,0,3
+espn_401860101,2026-04-12,finished,São Bernardo,Fortaleza,0,1
+espn_401860102,2026-04-18,finished,América Mineiro,Sport,0,0
+espn_401860103,2026-04-18,finished,Avaí,Ponte Preta,1,2
+espn_401860104,2026-04-18,finished,Vila Nova,Operário-PR,2,1
+espn_401860105,2026-04-18,finished,Náutico,São Bernardo,0,3
+espn_401860110,2026-04-18,finished,CRB,Juventude,0,1
+espn_401860106,2026-04-19,finished,Novorizontino,Athletic Club,2,1
+espn_401860107,2026-04-19,finished,Londrina,Ceará,0,0
+espn_401860108,2026-04-19,finished,Goiás,Cuiabá,0,2
+espn_401860109,2026-04-19,finished,Fortaleza,Criciúma,3,2
+espn_401860111,2026-04-19,finished,Botafogo-SP,Atlético Goianiense,1,1
+espn_401860117,2026-04-22,finished,Cuiabá,Botafogo-SP,1,1
+espn_401860114,2026-04-24,finished,Ponte Preta,América Mineiro,1,0
+espn_401860113,2026-04-25,finished,Sport,Novorizontino,1,0
+espn_401860121,2026-04-25,finished,Juventude,Londrina,1,0
+espn_401860115,2026-04-26,finished,Operário-PR,Fortaleza,0,0
+espn_401860116,2026-04-26,finished,São Bernardo,Goiás,1,0
+espn_401860118,2026-04-26,finished,Criciúma,CRB,3,1
+espn_401860119,2026-04-26,finished,Ceará,Vila Nova,3,3
+espn_401860120,2026-04-26,finished,Atlético Goianiense,Avaí,2,1
+espn_401860112,2026-04-27,finished,Athletic Club,Náutico,0,1
+espn_401860123,2026-05-02,finished,Fortaleza,Goiás,4,1
+espn_401860130,2026-05-02,finished,Botafogo-SP,Náutico,1,1
+espn_401860131,2026-05-02,finished,Cuiabá,Criciúma,1,1
+espn_401860122,2026-05-03,finished,Operário-PR,Londrina,3,0
+espn_401860125,2026-05-03,finished,São Bernardo,Ponte Preta,3,0
+espn_401860126,2026-05-03,finished,Sport,Ceará,2,0
+espn_401860127,2026-05-03,finished,América Mineiro,CRB,1,2
+espn_401860128,2026-05-03,finished,Atlético Goianiense,Juventude,0,0
+espn_401860129,2026-05-03,finished,Avaí,Novorizontino,3,3
+espn_401860124,2026-05-04,finished,Vila Nova,Athletic Club,1,1
+espn_401860132,2026-05-09,finished,Juventude,Criciúma,0,0
+espn_401860133,2026-05-09,finished,Goiás,Vila Nova,1,0
+espn_401860135,2026-05-09,finished,Ponte Preta,Sport,1,3
+espn_401860137,2026-05-09,finished,CRB,Operário-PR,3,0
+espn_401860139,2026-05-09,finished,Athletic Club,Cuiabá,0,0
+espn_401860141,2026-05-09,finished,Ceará,Atlético Goianiense,0,1
+espn_401860134,2026-05-10,finished,Náutico,América Mineiro,4,0
+espn_401860136,2026-05-10,finished,Novorizontino,Botafogo-SP,1,0
+espn_401860138,2026-05-10,finished,Avaí,Fortaleza,0,0
+espn_401860140,2026-05-12,finished,Londrina,São Bernardo,1,3
+espn_401860143,2026-05-16,finished,Operário-PR,Náutico,2,6
+espn_401860144,2026-05-16,finished,Goiás,Botafogo-SP,1,0
+espn_401860145,2026-05-16,finished,Cuiabá,Novorizontino,0,0
+espn_401860150,2026-05-16,finished,São Bernardo,América Mineiro,1,1
+espn_401860146,2026-05-17,finished,Criciúma,Atlético Goianiense,1,1
+espn_401860147,2026-05-17,finished,Ceará,Fortaleza,2,1
+espn_401860148,2026-05-17,finished,Athletic Club,Juventude,1,1
+espn_401860149,2026-05-17,finished,Sport,CRB,1,2
+espn_401860151,2026-05-17,finished,Vila Nova,Avaí,2,0
+espn_401860142,2026-05-18,finished,Ponte Preta,Londrina,1,4
+espn_401860158,2026-05-22,finished,Náutico,Cuiabá,1,0
+espn_401860155,2026-05-23,finished,Fortaleza,Londrina,3,0
+espn_401860156,2026-05-23,finished,Juventude,Sport,0,1
+espn_401860157,2026-05-23,finished,Novorizontino,Ceará,2,1
+espn_401860152,2026-05-24,finished,Avaí,Goiás,0,2
+espn_401860154,2026-05-24,finished,CRB,Ponte Preta,4,2
+espn_401860159,2026-05-24,finished,Operário-PR,Criciúma,1,1
+espn_401860160,2026-05-24,finished,América Mineiro,Vila Nova,1,2
+espn_401860161,2026-05-24,finished,Atlético Goianiense,São Bernardo,0,1
+espn_401860153,2026-05-25,finished,Botafogo-SP,Athletic Club,1,2
+espn_401860167,2026-05-29,finished,Juventude,América Mineiro,3,0
+espn_401860162,2026-05-30,finished,Athletic Club,Fortaleza,1,0
+espn_401860164,2026-05-30,finished,Avaí,Criciúma,1,2
+espn_401860170,2026-05-30,finished,Sport,Náutico,2,0
+espn_401873876,2026-05-30,finished,Atlético Goianiense,Goiás,1,1
+espn_401860165,2026-05-31,finished,Ceará,Operário-PR,1,2
+espn_401860166,2026-05-31,finished,São Bernardo,Novorizontino,1,1
+espn_401860168,2026-05-31,finished,Londrina,Vila Nova,0,1
+espn_401860171,2026-05-31,finished,Cuiabá,CRB,2,0
+espn_401860169,2026-06-01,finished,Ponte Preta,Botafogo-SP,0,0
+espn_401873965,2026-06-05,finished,Operário-PR,Juventude,2,1
+espn_401873959,2026-06-06,finished,Criciúma,Londrina,1,0
+espn_401873940,2026-06-07,finished,CRB,São Bernardo,2,3
+espn_401873942,2026-06-08,finished,Vila Nova,Botafogo-SP,1,0
+espn_401873960,2026-06-08,finished,América Mineiro,Atlético Goianiense,1,2
+espn_401860173,2026-06-09,finished,Ponte Preta,Cuiabá,1,2
+espn_401860175,2026-06-09,finished,Náutico,Fortaleza,0,1
+espn_401873941,2026-06-10,finished,Sport,Athletic Club,1,1
+espn_401873943,2026-06-10,finished,Ceará,Avaí,2,1
+espn_401873961,2026-06-10,finished,Goiás,Novorizontino,0,4
+espn_401860189,2026-06-12,finished,Atlético Goianiense,CRB,3,3
+espn_401873944,2026-06-14,finished,Novorizontino,Náutico,2,2
+espn_401873947,2026-06-14,finished,São Bernardo,Sport,0,0
+espn_401873962,2026-06-14,finished,Athletic Club,Goiás,1,1
+espn_401873963,2026-06-14,finished,Cuiabá,Vila Nova,1,0
+espn_401873967,2026-06-14,finished,Juventude,Ponte Preta,3,0
+espn_401873976,2026-06-14,finished,Botafogo-SP,Operário-PR,2,1
+espn_401873946,2026-06-15,finished,Criciúma,Ceará,1,1
+espn_401873964,2026-06-15,finished,Londrina,Avaí,3,2
+espn_401873948,2026-06-16,finished,Fortaleza,América Mineiro,0,3
+espn_401873945,2026-06-18,finished,Sport,Atlético Goianiense,1,1
+espn_401873952,2026-06-20,finished,Londrina,Athletic Club,2,0
+espn_401873966,2026-06-20,finished,Ceará,Botafogo-SP,0,1
+espn_401873974,2026-06-20,finished,Vila Nova,Náutico,4,3
+espn_401873951,2026-06-21,finished,Goiás,Operário-PR,0,3
+espn_401873968,2026-06-21,finished,CRB,Fortaleza,1,1
+espn_401873975,2026-06-21,finished,São Bernardo,Juventude,0,1
+espn_401873983,2026-06-21,finished,Avaí,Cuiabá,1,0
+espn_401873949,2026-06-22,finished,Ponte Preta,Novorizontino,0,2
+espn_401873969,2026-06-23,finished,América Mineiro,Criciúma,0,1
+espn_401873972,2026-06-25,finished,Cuiabá,Londrina,2,2
+espn_401860204,2026-06-26,finished,Novorizontino,Vila Nova,2,1
+espn_401873953,2026-06-27,finished,Operário-PR,América Mineiro,1,0
+espn_401873970,2026-06-27,finished,Criciúma,São Bernardo,1,0
+espn_401873950,2026-06-28,finished,Atlético Goianiense,Ponte Preta,2,0
+espn_401873971,2026-06-28,finished,Fortaleza,Sport,2,1
+espn_401873973,2026-06-28,finished,Náutico,Goiás,0,1
+espn_401873982,2026-06-28,finished,Athletic Club,Avaí,1,0
+espn_401874002,2026-06-28,finished,Juventude,Ceará,2,0
+espn_401873978,2026-06-30,finished,Botafogo-SP,CRB,0,1
+espn_401873977,2026-07-02,finished,Cuiabá,América Mineiro,1,0
+espn_401873979,2026-07-02,finished,Fortaleza,Ponte Preta,2,0
+espn_401873981,2026-07-04,finished,Goiás,Ceará,2,0
+espn_401873994,2026-07-04,finished,Criciúma,Sport,1,0
+espn_401873997,2026-07-04,finished,Novorizontino,Atlético Goianiense,3,0
+espn_401874008,2026-07-04,finished,Londrina,CRB,5,0
+espn_401873980,2026-07-05,finished,Náutico,Juventude,0,0
+espn_401873995,2026-07-06,finished,Vila Nova,São Bernardo,2,1
+espn_401873996,2026-07-06,finished,Botafogo-SP,Avaí,3,1
+espn_401873987,2026-07-07,finished,Athletic Club,Operário-PR,0,1
+espn_401873986,2026-07-08,finished,Ponte Preta,Criciúma,1,2
+espn_401860223,2026-07-10,finished,Sport,Botafogo-SP,3,3
+espn_401860231,2026-07-10,finished,Juventude,Vila Nova,1,0
+espn_401873984,2026-07-12,finished,Avaí,Náutico,2,0
+espn_401873998,2026-07-12,finished,Atlético Goianiense,Fortaleza,1,0
+espn_401874000,2026-07-12,finished,CRB,Goiás,2,2
+espn_401874001,2026-07-12,finished,São Bernardo,Cuiabá,2,2
+espn_401874004,2026-07-12,finished,Operário-PR,Novorizontino,2,1
+espn_401873999,2026-07-13,finished,América Mineiro,Londrina,1,1
+espn_401874003,2026-07-13,finished,Ceará,Athletic Club,0,0
+espn_401873985,2026-07-16,finished,CRB,Náutico,2,1
+espn_401860235,2026-07-17,finished,América Mineiro,Ceará,1,1
+espn_401860236,2026-07-17,finished,Fortaleza,Novorizontino,1,0
+espn_401860237,2026-07-17,finished,São Bernardo,Avaí,1,1
+espn_401860241,2026-07-17,finished,Juventude,Cuiabá,2,0
+espn_401874009,2026-07-17,finished,Londrina,Botafogo-SP,0,0
+espn_401873988,2026-07-18,finished,Atlético Goianiense,Athletic Club,0,0
+espn_401874005,2026-07-18,finished,Ponte Preta,Goiás,1,2
+espn_401874006,2026-07-18,finished,Criciúma,Vila Nova,2,0
+espn_401874007,2026-07-18,finished,Sport,Operário-PR,2,2
+espn_401860243,2026-07-21,finished,Avaí,América Mineiro,2,1
+espn_401860244,2026-07-21,finished,Vila Nova,Fortaleza,2,1
+espn_401860247,2026-07-21,finished,Novorizontino,Criciúma,0,1
+espn_401860245,2026-07-22,finished,Operário-PR,Ponte Preta,3,2
+espn_401860246,2026-07-22,finished,Náutico,Londrina,2,1
+espn_401860248,2026-07-22,finished,Goiás,Sport,1,1
+espn_401860250,2026-07-22,finished,Ceará,CRB,0,1
+espn_401860242,2026-07-23,finished,Athletic Club,São Bernardo,2,1
+espn_401860249,2026-07-23,finished,Cuiabá,Atlético Goianiense,0,1
+espn_401860251,2026-07-23,finished,Botafogo-SP,Juventude,4,2
+espn_401860252,2026-07-26,finished,América Mineiro,Goiás,1,0
+espn_401860255,2026-07-26,finished,Londrina,Novorizontino,1,4
+espn_401860256,2026-07-26,finished,São Bernardo,Ceará,3,4
+espn_401860258,2026-07-26,finished,Criciúma,Náutico,0,0
+espn_401860257,2026-07-27,finished,Sport,Cuiabá,1,1
+espn_401860259,2026-07-27,finished,CRB,Vila Nova,2,0
+espn_401860260,2026-07-27,finished,Atlético Goianiense,Operário-PR,3,1
+espn_401860253,2026-07-28,finished,Fortaleza,Botafogo-SP,1,0
+espn_401860254,2026-07-28,finished,Juventude,Avaí,1,0
+espn_401860261,2026-07-28,finished,Ponte Preta,Athletic Club,1,1
+espn_401860264,2026-08-07,finished,Operário-PR,São Bernardo,1,3
+espn_401860269,2026-08-07,finished,Ceará,Ponte Preta,2,0
+espn_401860263,2026-08-08,finished,Vila Nova,Sport,0,1
+espn_401860270,2026-08-08,finished,Botafogo-SP,América Mineiro,2,1
+espn_401860262,2026-08-09,finished,Athletic Club,Criciúma,2,0
+espn_401860265,2026-08-09,finished,Náutico,Atlético Goianiense,1,1
+espn_401860268,2026-08-09,finished,Cuiabá,Fortaleza,1,1
+espn_401860271,2026-08-09,finished,Novorizontino,Juventude,0,1
+espn_401860267,2026-08-10,finished,Goiás,Londrina,1,0
+espn_401860266,2026-08-11,finished,Avaí,CRB,0,1
+espn_401860272,2026-08-14,finished,São Bernardo,Botafogo-SP,0,1
+espn_401860273,2026-08-14,finished,Ponte Preta,Náutico,1,1
+espn_401860274,2026-08-14,finished,Sport,Londrina,2,1
+espn_401860276,2026-08-15,finished,Juventude,Fortaleza,0,0
+espn_401860277,2026-08-15,finished,Criciúma,Goiás,1,0
+espn_401860278,2026-08-15,finished,Ceará,Cuiabá,1,3
+espn_401860280,2026-08-15,finished,Atlético Goianiense,Vila Nova,0,2
+espn_401860275,2026-08-16,finished,Operário-PR,Avaí,1,2
+espn_401860279,2026-08-16,finished,CRB,Novorizontino,0,0
+espn_401860281,2026-08-16,finished,América Mineiro,Athletic Club,1,3
+espn_401860283,2026-08-18,finished,Náutico,Ceará,1,0
+espn_401860285,2026-08-18,finished,Londrina,Atlético Goianiense,0,0
+espn_401860291,2026-08-18,finished,Goiás,Juventude,0,1
+espn_401860282,2026-08-19,finished,Vila Nova,Ponte Preta,6,0
+espn_401860287,2026-08-19,finished,Fortaleza,São Bernardo,1,1
+espn_401860288,2026-08-19,finished,Cuiabá,Operário-PR,1,0
+espn_401860289,2026-08-19,finished,Botafogo-SP,Criciúma,1,1
+espn_401860290,2026-08-19,finished,Avaí,Sport,2,1
+espn_401860284,2026-08-20,finished,Novorizontino,América Mineiro,3,0
+espn_401860286,2026-08-20,finished,Athletic Club,CRB,0,2
+espn_401860297,2026-08-22,finished,Cuiabá,Goiás,1,1
+espn_401860299,2026-08-22,finished,Ceará,Londrina,2,1
+espn_401860292,2026-08-23,finished,São Bernardo,Náutico,1,1
+espn_401860293,2026-08-23,finished,Ponte Preta,Avaí,0,2
+espn_401860295,2026-08-23,finished,Operário-PR,Vila Nova,0,0
+espn_401860298,2026-08-23,finished,Criciúma,Fortaleza,0,2
+espn_401860294,2026-08-24,finished,Sport,América Mineiro,3,0
+espn_401860301,2026-08-24,finished,Athletic Club,Novorizontino,1,4
+espn_401860296,2026-08-25,finished,Juventude,CRB,2,1
+espn_401860300,2026-08-25,finished,Atlético Goianiense,Botafogo-SP,3,0
+espn_401860307,2026-08-28,finished,Goiás,São Bernardo,2,1
+espn_401860309,2026-08-28,finished,Novorizontino,Sport,2,1
+espn_401860310,2026-08-28,finished,Náutico,Athletic Club,2,1
+espn_401860304,2026-08-29,finished,Botafogo-SP,Cuiabá,1,2
+espn_401860302,2026-08-30,finished,América Mineiro,Ponte Preta,2,0
+espn_401860303,2026-08-30,finished,Avaí,Atlético Goianiense,0,1
+espn_401860305,2026-08-30,finished,CRB,Criciúma,2,1
+espn_401860306,2026-08-30,finished,Vila Nova,Ceará,2,0
+espn_401860311,2026-08-31,finished,Fortaleza,Operário-PR,1,1
+espn_401860308,2026-09-01,finished,Londrina,Juventude,0,0
+espn_401860315,2026-09-03,finished,Náutico,Botafogo-SP,1,0
+espn_401860312,2026-09-04,finished,Criciúma,Cuiabá,2,0
+espn_401860320,2026-09-04,finished,Athletic Club,Vila Nova,5,0
+espn_401860321,2026-09-04,finished,CRB,América Mineiro,3,1
+espn_401860313,2026-09-05,finished,Ceará,Sport,2,1
+espn_401860316,2026-09-05,finished,Novorizontino,Avaí,3,1
+espn_401860318,2026-09-05,finished,Juventude,Atlético Goianiense,2,2
+espn_401860319,2026-09-05,finished,Goiás,Fortaleza,0,1
+espn_401860314,2026-09-06,finished,Ponte Preta,São Bernardo,0,2
+espn_401860317,2026-09-06,finished,Londrina,Operário-PR,1,2
+espn_401860327,2026-09-08,finished,Cuiabá,Athletic Club,3,0
+espn_401860328,2026-09-08,finished,Criciúma,Juventude,0,2
+espn_401860322,2026-09-09,finished,América Mineiro,Náutico,2,1
+espn_401860325,2026-09-09,finished,Operário-PR,CRB,3,0
+espn_401860329,2026-09-09,finished,Botafogo-SP,Novorizontino,1,3
+espn_401860330,2026-09-09,finished,Atlético Goianiense,Ceará,2,1
+espn_401860331,2026-09-09,finished,Fortaleza,Avaí,1,0
+espn_401860323,2026-09-10,finished,São Bernardo,Londrina,1,2
+espn_401860324,2026-09-10,finished,Sport,Ponte Preta,2,0
+espn_401860326,2026-09-10,finished,Vila Nova,Goiás,2,0
+espn_401860334,2026-09-13,finished,Atlético Goianiense,Criciúma,4,0
+espn_401860338,2026-09-13,finished,Novorizontino,Cuiabá,1,1
+espn_401860340,2026-09-13,finished,Juventude,Athletic Club,0,2
+espn_401860341,2026-09-13,finished,Fortaleza,Ceará,1,1
+espn_401860332,2026-09-14,finished,Botafogo-SP,Goiás,1,3
+espn_401860333,2026-09-14,finished,Avaí,Vila Nova,1,1
+espn_401860335,2026-09-14,finished,América Mineiro,São Bernardo,0,2
+espn_401860336,2026-09-15,finished,CRB,Sport,2,1
+espn_401860337,2026-09-15,finished,Náutico,Operário-PR,3,3
+espn_401860339,2026-09-15,finished,Londrina,Ponte Preta,6,0
+espn_401860343,2026-09-18,finished,Ceará,Novorizontino,2,1
+espn_401860344,2026-09-18,finished,Vila Nova,América Mineiro,1,0
+espn_401860345,2026-09-18,finished,São Bernardo,Atlético Goianiense,1,0
+espn_401860342,2026-09-19,finished,Athletic Club,Botafogo-SP,1,1
+espn_401860346,2026-09-19,finished,Sport,Juventude,2,1
+espn_401860347,2026-09-20,finished,Ponte Preta,CRB,1,0
+espn_401860348,2026-09-20,finished,Londrina,Fortaleza,1,2
+espn_401860349,2026-09-20,finished,Goiás,Avaí,2,1
+espn_401860350,2026-09-21,finished,Cuiabá,Náutico,3,0
+espn_401860351,2026-09-22,finished,Criciúma,Operário-PR,0,2
+espn_401860355,2026-09-25,finished,Novorizontino,São Bernardo,0,0
+espn_401860356,2026-09-25,finished,Vila Nova,Londrina,2,0
+espn_401860354,2026-09-26,finished,Goiás,Atlético Goianiense,0,1
+espn_401860357,2026-09-26,finished,Operário-PR,Ceará,2,2
+espn_401860361,2026-09-26,finished,Náutico,Sport,3,1
+espn_401860353,2026-09-27,scheduled,Fortaleza,Athletic Club,,
+espn_401860358,2026-09-27,live,Criciúma,Avaí,,
+espn_401860359,2026-09-27,scheduled,CRB,Cuiabá,,
+espn_401860352,2026-09-28,scheduled,América Mineiro,Juventude,,
+espn_401860360,2026-09-29,scheduled,Botafogo-SP,Ponte Preta,,
+espn_401860365,2026-10-01,scheduled,Novorizontino,Goiás,,
+espn_401860367,2026-10-01,scheduled,Athletic Club,Sport,,
+espn_401860362,2026-10-02,scheduled,Juventude,Operário-PR,,
+espn_401860363,2026-10-02,scheduled,Fortaleza,Náutico,,
+espn_401860364,2026-10-02,scheduled,São Bernardo,CRB,,
+espn_401860366,2026-10-02,scheduled,Londrina,Criciúma,,
+espn_401860368,2026-10-03,scheduled,Atlético Goianiense,América Mineiro,,
+espn_401860369,2026-10-03,scheduled,Avaí,Ceará,,
+espn_401860370,2026-10-03,scheduled,Botafogo-SP,Vila Nova,,
+espn_401860371,2026-10-03,scheduled,Cuiabá,Ponte Preta,,
+espn_401860372,2026-10-06,scheduled,Ponte Preta,Juventude,,
+espn_401860377,2026-10-06,scheduled,Goiás,Athletic Club,,
+espn_401860380,2026-10-06,scheduled,Sport,São Bernardo,,
+espn_401860373,2026-10-07,scheduled,Operário-PR,Botafogo-SP,,
+espn_401860374,2026-10-07,scheduled,Avaí,Londrina,,
+espn_401860375,2026-10-07,scheduled,CRB,Atlético Goianiense,,
+espn_401860376,2026-10-07,scheduled,Vila Nova,Cuiabá,,
+espn_401860379,2026-10-07,scheduled,América Mineiro,Fortaleza,,
+espn_401860378,2026-10-08,scheduled,Ceará,Criciúma,,
+espn_401860381,2026-10-08,scheduled,Náutico,Novorizontino,,
+espn_401860382,2026-10-11,scheduled,Náutico,Vila Nova,,
+espn_401860384,2026-10-11,scheduled,Juventude,São Bernardo,,
+espn_401860386,2026-10-11,scheduled,Cuiabá,Avaí,,
+espn_401860389,2026-10-11,scheduled,Atlético Goianiense,Sport,,
+espn_401860391,2026-10-11,scheduled,Operário-PR,Goiás,,
+espn_401860383,2026-10-12,scheduled,Novorizontino,Ponte Preta,,
+espn_401860385,2026-10-12,scheduled,Fortaleza,CRB,,
+espn_401860387,2026-10-12,scheduled,Criciúma,América Mineiro,,
+espn_401860388,2026-10-12,scheduled,Botafogo-SP,Ceará,,
+espn_401860390,2026-10-13,scheduled,Athletic Club,Londrina,,
+espn_401860398,2026-10-16,scheduled,Ponte Preta,Atlético Goianiense,,
+espn_401860399,2026-10-16,scheduled,Sport,Fortaleza,,
+espn_401860392,2026-10-17,scheduled,Ceará,Juventude,,
+espn_401860395,2026-10-17,scheduled,América Mineiro,Operário-PR,,
+espn_401860393,2026-10-18,scheduled,CRB,Botafogo-SP,,
+espn_401860394,2026-10-18,scheduled,Avaí,Athletic Club,,
+espn_401860396,2026-10-18,scheduled,Vila Nova,Novorizontino,,
+espn_401860400,2026-10-18,scheduled,São Bernardo,Criciúma,,
+espn_401860401,2026-10-19,scheduled,Goiás,Náutico,,
+espn_401860397,2026-10-20,scheduled,Londrina,Cuiabá,,
+espn_401860402,2026-10-23,scheduled,CRB,Londrina,,
+espn_401860403,2026-10-23,scheduled,Avaí,Botafogo-SP,,
+espn_401860404,2026-10-23,scheduled,Atlético Goianiense,Novorizontino,,
+espn_401860405,2026-10-23,scheduled,América Mineiro,Cuiabá,,
+espn_401860406,2026-10-23,scheduled,Ceará,Goiás,,
+espn_401860407,2026-10-23,scheduled,São Bernardo,Vila Nova,,
+espn_401860408,2026-10-23,scheduled,Sport,Criciúma,,
+espn_401860409,2026-10-23,scheduled,Ponte Preta,Fortaleza,,
+espn_401860410,2026-10-23,scheduled,Operário-PR,Athletic Club,,
+espn_401860411,2026-10-23,scheduled,Juventude,Náutico,,
+espn_401860412,2026-10-30,scheduled,Athletic Club,Ceará,,
+espn_401860413,2026-10-30,scheduled,Botafogo-SP,Sport,,
+espn_401860414,2026-10-30,scheduled,Criciúma,Ponte Preta,,
+espn_401860415,2026-10-30,scheduled,Cuiabá,São Bernardo,,
+espn_401860416,2026-10-30,scheduled,Vila Nova,Juventude,,
+espn_401860417,2026-10-30,scheduled,Novorizontino,Operário-PR,,
+espn_401860418,2026-10-30,scheduled,Londrina,América Mineiro,,
+espn_401860419,2026-10-30,scheduled,Goiás,CRB,,
+espn_401860420,2026-10-30,scheduled,Fortaleza,Atlético Goianiense,,
+espn_401860421,2026-10-30,scheduled,Náutico,Avaí,,
+espn_401860422,2026-11-06,scheduled,Athletic Club,Atlético Goianiense,,
+espn_401860423,2026-11-06,scheduled,Avaí,São Bernardo,,
+espn_401860424,2026-11-06,scheduled,Vila Nova,Criciúma,,
+espn_401860425,2026-11-06,scheduled,Operário-PR,Sport,,
+espn_401860426,2026-11-06,scheduled,Náutico,CRB,,
+espn_401860427,2026-11-06,scheduled,Novorizontino,Fortaleza,,
+espn_401860428,2026-11-06,scheduled,Goiás,Ponte Preta,,
+espn_401860429,2026-11-06,scheduled,Cuiabá,Juventude,,
+espn_401860430,2026-11-06,scheduled,Ceará,América Mineiro,,
+espn_401860431,2026-11-06,scheduled,Botafogo-SP,Londrina,,
+espn_401860432,2026-11-14,scheduled,América Mineiro,Avaí,,
+espn_401860433,2026-11-14,scheduled,Sport,Goiás,,
+espn_401860434,2026-11-14,scheduled,Ponte Preta,Operário-PR,,
+espn_401860435,2026-11-14,scheduled,Londrina,Náutico,,
+espn_401860436,2026-11-14,scheduled,São Bernardo,Athletic Club,,
+espn_401860437,2026-11-14,scheduled,Fortaleza,Vila Nova,,
+espn_401860438,2026-11-14,scheduled,Criciúma,Novorizontino,,
+espn_401860439,2026-11-14,scheduled,CRB,Ceará,,
+espn_401860440,2026-11-14,scheduled,Atlético Goianiense,Cuiabá,,
+espn_401860441,2026-11-14,scheduled,Juventude,Botafogo-SP,,

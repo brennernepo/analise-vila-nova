@@ -18,6 +18,7 @@ import requests
 
 TEMPORADA = 2026
 ARQUIVO = "vila_nova_serie_b_2026_todos_jogos.csv"
+ARQUIVO_LIGA = "serie_b_2026_jogos.csv"
 
 # Football Soccer API — https://footballsoccerapi.com
 FSAPI_KEY = os.environ.get("FSAPI_KEY")
@@ -314,6 +315,77 @@ def coletar_espn():
 
 
 # =========================================================
+# 1C. TODOS OS JOGOS DA LIGA (base da simulação do campeonato)
+# =========================================================
+
+def linha_liga(id_jogo, data, status, mandante, visitante, gols_mandante, gols_visitante):
+    encerrado = status == "finished"
+    return {
+        "id_jogo": id_jogo,
+        "data": data,
+        "status": status,
+        "mandante": NOMES.get(mandante, mandante),
+        "visitante": NOMES.get(visitante, visitante),
+        "gols_mandante": gols_mandante if encerrado else None,
+        "gols_visitante": gols_visitante if encerrado else None,
+    }
+
+
+def liga_espn():
+    """Jogos disputados e agendados de todos os clubes, pela agenda de cada um."""
+    clubes = get_json(f"{ESPN_URL}/teams")["sports"][0]["leagues"][0]["teams"]
+    eventos = {}
+    for item in clubes:
+        clube = item["team"]
+        if clube["displayName"].startswith("TBD"):
+            continue
+        for extra in ({}, {"fixture": "true"}):
+            agenda = get_json(
+                f"{ESPN_URL}/teams/{clube['id']}/schedule",
+                params={"season": TEMPORADA, **extra},
+            )
+            for evento in agenda.get("events", []):
+                eventos[evento["id"]] = evento
+            time.sleep(PAUSA)
+
+    jogos = []
+    for evento in eventos.values():
+        competicao = evento["competitions"][0]
+        lados = {c["homeAway"]: c for c in competicao["competitors"]}
+        inicio = datetime.fromisoformat(evento["date"].replace("Z", "+00:00"))
+        jogos.append(linha_liga(
+            f"espn_{evento['id']}",
+            inicio.astimezone(BRASILIA).date().isoformat(),
+            espn_status(competicao.get("status", {}).get("type", {})),
+            lados["home"]["team"]["displayName"],
+            lados["away"]["team"]["displayName"],
+            espn_placar(lados["home"].get("score")),
+            espn_placar(lados["away"].get("score")),
+        ))
+    return jogos
+
+
+def liga_fsapi():
+    """Resultados de todos os clubes. Os jogos futuros não precisam vir da API: a
+    simulação completa o turno e returno com os confrontos ainda não disputados."""
+    params = {"league_id": SERIE_B_ID, "season": TEMPORADA, "limit": 1000, "sort": "kickoff_utc"}
+    jogos, cursor = [], None
+    while True:
+        if cursor:
+            params["cursor"] = cursor
+        resposta = fsapi_get("/matches", params)
+        for jogo in resposta.get("data", []):
+            jogos.append(linha_liga(
+                jogo["match_id"], jogo.get("kickoff_date"), jogo.get("match_status"),
+                jogo.get("home_team_name"), jogo.get("away_team_name"),
+                jogo.get("home_goals"), jogo.get("away_goals"),
+            ))
+        cursor = resposta.get("meta", {}).get("next_cursor")
+        if not cursor:
+            return jogos
+
+
+# =========================================================
 # 2. JOGO NA PERSPECTIVA DO VILA NOVA
 # =========================================================
 
@@ -431,12 +503,21 @@ def main():
     if FSAPI_KEY:
         print("Fonte: Football Soccer API")
         jogos = coletar_fsapi()
+        liga = liga_fsapi()
     else:
         print("Fonte: ESPN (defina FSAPI_KEY para usar a Football Soccer API)")
         jogos = coletar_espn()
+        print("\nColetando os jogos dos demais clubes...")
+        liga = liga_espn()
 
     df = montar_dataframe(jogos)
     df.to_csv(ARQUIVO, index=False, encoding="utf-8-sig")
+
+    df_liga = pd.DataFrame(liga).drop_duplicates(subset=["id_jogo"]).sort_values(["data", "id_jogo"])
+    for coluna in ("gols_mandante", "gols_visitante"):
+        df_liga[coluna] = pd.to_numeric(df_liga[coluna], errors="coerce").astype("Int64")
+    df_liga.to_csv(ARQUIVO_LIGA, index=False, encoding="utf-8-sig")
+    print(f"Jogos da liga: {len(df_liga)} ({(df_liga['status'] == 'finished').sum()} encerrados) -> {ARQUIVO_LIGA}")
 
     encerrados = df[df["status"] == "finished"]
     print("\n" + "=" * 60)
@@ -448,6 +529,13 @@ def main():
     print("Jogos com placar do intervalo:", encerrados["gols_1t_vila_nova"].notna().sum())
     print("Jogos com estatísticas:", encerrados["finalizacoes_vila_nova"].notna().sum())
     print("Arquivo:", ARQUIVO)
+
+    # Com a liga atualizada, recalcula as chances de acesso e rebaixamento.
+    print("\n" + "=" * 60)
+    print("SIMULAÇÃO DO CAMPEONATO")
+    print("=" * 60)
+    import simulacao
+    simulacao.main()
 
 
 if __name__ == "__main__":

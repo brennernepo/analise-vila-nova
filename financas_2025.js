@@ -20,6 +20,14 @@ window.VILA_NOVA_FINANCAS = {
     "atual": 8368,
     "anterior": 2789
   },
+  "venda_atletas_bruta": {
+    "atual": 11749,
+    "anterior": 7561
+  },
+  "custos_venda_atletas": {
+    "atual": -3641,
+    "anterior": -4771
+  },
   "receitas": [
     {
       "nome": "Diversos (inclui LFU)",
@@ -34,10 +42,10 @@ window.VILA_NOVA_FINANCAS = {
       "detalhe": "Patrocínios, publicidade e royalties"
     },
     {
-      "nome": "Venda de atletas",
+      "nome": "Venda de atletas (líquida)",
       "atual": 8368,
       "anterior": 2789,
-      "detalhe": "Resultado líquido das negociações"
+      "detalhe": "Venda bruta de R$ 11,7 mi e solidariedade de R$ 0,3 mi, menos comissões e gastos"
     },
     {
       "nome": "Mídia e publicidade",
@@ -57,6 +65,11 @@ window.VILA_NOVA_FINANCAS = {
       "nome": "Bilheteria",
       "atual": 5605,
       "anterior": 3252
+    },
+    {
+      "nome": "Sócio Tigrão",
+      "atual": 1404,
+      "anterior": 2380
     },
     {
       "nome": "Patrocínios e publicidade",
@@ -219,7 +232,7 @@ window.VILA_NOVA_FINANCAS = {
         "nome": "Outros passivos",
         "atual": 18325,
         "anterior": 13561,
-        "detalhe": "Provisões, empréstimos e antecipações"
+        "detalhe": "Provisões, empréstimos e receitas recebidas antecipadamente"
       },
       {
         "nome": "Obrigações tributárias",
@@ -262,13 +275,13 @@ window.VILA_NOVA_FINANCAS = {
         "nome": "Operacional",
         "atual": 12129,
         "anterior": 15165,
-        "detalhe": "Gerado pelo dia a dia do clube"
+        "detalhe": "Inclui adiantamentos recebidos e contas ainda a pagar"
       },
       {
         "nome": "Investimentos",
         "atual": -14885,
         "anterior": -15706,
-        "detalhe": "Quase tudo em direitos de atletas"
+        "detalhe": "Direitos de atletas (em 2024, também obras e equipamentos)"
       },
       {
         "nome": "Financiamentos",
@@ -317,6 +330,25 @@ window.VILA_NOVA_FINANCAS = {
     }
   },
   "waiver_mi": 9.7,
+  "auditoria": {
+    "opiniao": "com ressalva",
+    "auditora": "Alianzo Auditoria S/S Ltda",
+    "data": "20 de abril de 2026",
+    "ressalvas": [
+      {
+        "tema": "Contas a receber",
+        "valor": 3309,
+        "motivo": "sem evidência suficiente de que os créditos serão recebidos"
+      },
+      {
+        "tema": "Imobilizado",
+        "valor": 97314,
+        "motivo": "sem controle adequado dos bens, avaliação de vida útil e teste de recuperabilidade"
+      }
+    ],
+    "continuidade": true,
+    "partes_relacionadas": true
+  },
   "ssf": [
     {
       "indicador": "Resultado da Operação (Exercício T-1)",

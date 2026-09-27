@@ -21,7 +21,10 @@ def build_dashboard() -> str:
     html = read_text("index.html")
     css = read_text("styles.css")
     javascript = read_text("app.js")
-    finance_js = read_text("financas_2025.js").replace("</", "<\\/")
+    finance_path = ROOT / "financas_2025.js"
+    finance_js = finance_path.read_text(encoding="utf-8").replace("</", "<\\/") if finance_path.exists() else ""
+    simulation_path = ROOT / "simulacao_2026.js"
+    simulation_js = simulation_path.read_text(encoding="utf-8").replace("</", "<\\/") if simulation_path.exists() else ""
     csv_text = read_text("vila_nova_serie_b_2026_todos_jogos.csv")
     logo = base64.b64encode((ROOT / "vila-nova-logo.png").read_bytes()).decode("ascii")
 
@@ -39,29 +42,37 @@ def build_dashboard() -> str:
       <script>window.__VILANOVA_CSV__ = {embedded_data};</script>
       <script>{javascript}</script>
       <script>
+        // A medição automática do st.iframe só aumenta a altura: ela usa
+        // documentElement.scrollHeight, que nunca fica abaixo da altura atual do iframe.
+        // Aqui medimos o conteúdo e enviamos pelo mesmo canal do Streamlit, para o
+        // iframe também encolher quando uma busca ou um filtro reduz a página.
         (() => {{
+          const shell = document.querySelector(".page-shell");
           let lastHeight = 0;
           const syncHeight = () => {{
-            const height = Math.max(
-              document.body.scrollHeight,
-              document.documentElement.scrollHeight
-            );
-            if (height === lastHeight) return;
+            const height = Math.ceil(shell.getBoundingClientRect().height);
+            if (!height || height === lastHeight) return;
             lastHeight = height;
             window.parent.postMessage({{
-              isStreamlitMessage: true,
-              type: "streamlit:setFrameHeight",
+              type: "streamlit:iframe:setSize",
+              width: document.documentElement.clientWidth,
               height
             }}, "*");
           }};
+          // Sem barra de rolagem interna: ela estreitaria a página e mudaria a altura medida.
+          document.documentElement.style.overflowY = "hidden";
+          new ResizeObserver(syncHeight).observe(shell);
+          new MutationObserver(syncHeight).observe(document.body, {{
+            childList: true, subtree: true, attributes: true, characterData: true
+          }});
           window.addEventListener("load", syncHeight);
           window.addEventListener("resize", syncHeight);
-          new ResizeObserver(syncHeight).observe(document.body);
-          setTimeout(syncHeight, 200);
-          setTimeout(syncHeight, 900);
+          // Rede de segurança para abas em segundo plano, onde o ResizeObserver fica pausado.
+          setInterval(syncHeight, 1000);
         }})();
       </script>
     """
+    html = html.replace('<script src="simulacao_2026.js"></script>', f"<script>{simulation_js}</script>")
     html = html.replace('<script src="financas_2025.js"></script>', f"<script>{finance_js}</script>")
     return html.replace('<script src="app.js"></script>', embedded_script)
 
