@@ -21,6 +21,7 @@ def build_dashboard() -> str:
     html = read_text("index.html")
     css = read_text("styles.css")
     javascript = read_text("app.js")
+    finance_js = read_text("financas_2025.js").replace("</", "<\\/")
     csv_text = read_text("vila_nova_serie_b_2026_todos_jogos.csv")
     logo = base64.b64encode((ROOT / "vila-nova-logo.png").read_bytes()).decode("ascii")
 
@@ -61,6 +62,7 @@ def build_dashboard() -> str:
         }})();
       </script>
     """
+    html = html.replace('<script src="financas_2025.js"></script>', f"<script>{finance_js}</script>")
     return html.replace('<script src="app.js"></script>', embedded_script)
 
 

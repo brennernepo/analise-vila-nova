@@ -589,6 +589,216 @@ async function loadCsv() {
   }
 }
 
+// Finanças: dados de financas_2025.js, gerados por extrair_financas.py (valores em R$ mil).
+const FIN = window.VILA_NOVA_FINANCAS;
+const millions = (value) => oneDecimal(Math.abs(value) / 1000);
+const money = (value) => Math.abs(value) < 1000 ? `R$ ${Math.abs(value).toLocaleString('pt-BR')} mil` : `R$ ${millions(value)} mi`;
+const minus = (value) => value < 0 ? '−' : '';
+const listJoin = (items) => items.length > 1 ? `${items.slice(0, -1).join(', ')} e ${items.at(-1)}` : items.join('');
+
+function variation(item) {
+  return item.anterior ? (Math.abs(item.atual) - Math.abs(item.anterior)) / Math.abs(item.anterior) * 100 : null;
+}
+
+function changeTone(change, goodWhenUp) {
+  if (change === null || Math.abs(change) < .05 || goodWhenUp === null) return 'neutral';
+  return (change > 0) === goodWhenUp ? 'good' : 'bad';
+}
+
+function changeLabel(change) {
+  return change === null ? 'novo' : `${change > 0 ? '▲' : '▼'} ${oneDecimal(Math.abs(change))}%`;
+}
+
+function pairRows(items, goodWhenUp, total) {
+  const max = Math.max(...items.flatMap(item => [Math.abs(item.atual), Math.abs(item.anterior)]));
+  return items.map(item => {
+    const change = variation(item);
+    const share = total ? `${oneDecimal(Math.abs(item.atual) / total * 100)}% do total · ` : '';
+    return `<div class="pair-row" title="${item.nome}: ${money(item.atual)} em ${FIN.exercicio} e ${money(item.anterior)} em ${FIN.comparativo}">
+      <div class="pair-label"><b>${item.nome}</b><small>${share}${item.detalhe || ''}</small></div>
+      <div class="pair-bars">
+        <div class="pair-bar current"><i style="width:${Math.abs(item.atual) / max * 80}%"></i><span>${millions(item.atual)}</span></div>
+        <div class="pair-bar previous"><i style="width:${Math.abs(item.anterior) / max * 80}%"></i><span>${millions(item.anterior)}</span></div>
+      </div>
+      <em class="pair-change ${changeTone(change, goodWhenUp)}">${changeLabel(change)}</em>
+    </div>`;
+  }).join('');
+}
+
+function factCards(items) {
+  return items.map(item => `<div><span>${item.label}</span><b>${item.value}</b><small>${item.note}</small></div>`).join('');
+}
+
+function renderFinanceKpis() {
+  const {faturamento, venda_atletas: sales, resultado, divida, elenco} = FIN;
+  const mutuos = divida.itens.find(item => item.nome.startsWith('Mútuos'));
+  const deficitNow = resultado.atual < 0;
+  const resultChange = variation(resultado);
+  const resultDelta = deficitNow && resultado.anterior < 0
+    ? {tone: resultChange < 0 ? 'good' : 'bad', text: `Déficit ${oneDecimal(Math.abs(resultChange))}% ${resultChange < 0 ? 'menor' : 'maior'}`}
+    : {tone: deficitNow ? 'bad' : 'good', text: deficitNow ? 'Voltou ao déficit' : 'Superávit no ano'};
+  const kpis = [
+    {
+      label: 'Faturamento total', badge: 'RECEITAS', value: money(faturamento.atual),
+      delta: {tone: changeTone(variation(faturamento), true), text: `${changeLabel(variation(faturamento))} vs. ${FIN.comparativo}`},
+      note: `Receitas de ${money(faturamento.atual - sales.atual)} + venda de atletas de ${money(sales.atual)}`
+    },
+    {
+      label: 'Resultado do exercício', badge: 'DRE', value: `${minus(resultado.atual)}${money(resultado.atual)}`,
+      delta: resultDelta,
+      note: `Em ${FIN.comparativo}: ${resultado.anterior < 0 ? 'déficit' : 'superávit'} de ${money(resultado.anterior)}`
+    },
+    {
+      label: 'Dívida total', badge: 'BALANÇO', value: money(divida.total.atual),
+      delta: {tone: changeTone(variation(divida.total), false), text: `${changeLabel(variation(divida.total))} vs. ${FIN.comparativo}`},
+      note: `${oneDecimal(mutuos.atual / divida.total.atual * 100)}% em mútuos com conselheiros`
+    },
+    {
+      label: 'Investimento no elenco', badge: 'ATLETAS', value: money(elenco.adicoes.atual),
+      delta: {tone: 'neutral', text: `${changeLabel(variation(elenco.adicoes))} vs. ${FIN.comparativo}`},
+      note: `Direitos de atletas no balanço: de ${money(elenco.saldo_inicial.atual)} para ${money(elenco.saldo_final.atual)}`
+    }
+  ];
+  $('financeKpis').innerHTML = kpis.map(kpi => `<article class="kpi">
+    <div class="kpi-top"><span>${kpi.label}</span><span class="kpi-icon">${kpi.badge}</span></div>
+    <strong>${kpi.value}</strong>
+    <small class="finance-delta ${kpi.delta.tone}">${kpi.delta.text}</small>
+    <small>${kpi.note}</small>
+  </article>`).join('');
+}
+
+function renderWaterfall() {
+  const dre = Object.fromEntries(FIN.dre.map(item => [item.nome, item.atual]));
+  const result = dre['Resultado do exercício'];
+  const steps = [
+    ['Receita líquida', dre['Receita operacional líquida'], true],
+    ['Custo do futebol', dre['Custo das atividades esportivas']],
+    ['Pessoal', dre['Despesas com pessoal']],
+    ['Despesas gerais', dre['Despesas gerais']],
+    ['Outras receitas', dre['Outras receitas líquidas']],
+    ['Resultado financeiro', dre['Resultado financeiro']],
+    [result < 0 ? 'Déficit' : 'Superávit', result, true]
+  ];
+  let running = 0;
+  const bars = steps.map(([label, value, total], index) => {
+    const start = total ? 0 : running;
+    running = total ? value : running + value;
+    const kind = index === steps.length - 1 ? 'result' : value >= 0 ? 'in' : 'out';
+    return {label, value, total, end: running, kind, low: Math.min(start, running), high: Math.max(start, running)};
+  });
+  const low = Math.min(0, ...bars.map(bar => bar.low));
+  const high = Math.max(0, ...bars.map(bar => bar.high));
+  const pad = (high - low) * .14;
+  const y = (value) => (value - low + pad) / (high - low + pad * 2) * 100;
+  const chart = $('dreWaterfall');
+  chart.style.setProperty('--steps', bars.length);
+  chart.innerHTML = `<div class="wf-plot">
+      <i class="wf-zero" style="bottom:${y(0)}%"></i>
+      ${bars.map((bar, index) => {
+        const text = bar.total ? `${minus(bar.value)}${millions(bar.value)}` : `${bar.value < 0 ? '−' : '+'}${millions(bar.value)}`;
+        const place = bar.value < 0 ? `top:${100 - y(bar.low)}%` : `bottom:${y(bar.high)}%`;
+        return `<div class="wf-bar ${bar.kind}" style="--i:${index}; bottom:${y(bar.low)}%; height:${y(bar.high) - y(bar.low)}%" title="${bar.label}: ${bar.total ? minus(bar.value) : bar.value < 0 ? '−' : '+'}${money(bar.value)} · acumulado ${minus(bar.end)}${money(bar.end)}"></div>
+          <span class="wf-value" style="--i:${index}; ${place}">${text}</span>`;
+      }).join('')}
+    </div>
+    <div class="wf-labels">${bars.map(bar => `<span>${bar.label}</span>`).join('')}</div>`;
+
+  $('dreTable').innerHTML = FIN.dre.map(item => {
+    const diff = item.atual - item.anterior;
+    return `<tr class="${item.tipo || ''}"><td>${item.nome}</td><td>${minus(item.atual)}${millions(item.atual)}</td><td>${minus(item.anterior)}${millions(item.anterior)}</td><td>${diff > 0 ? '+' : diff < 0 ? '−' : ''}${millions(diff)}</td></tr>`;
+  }).join('');
+}
+
+function renderCashFlow() {
+  const {atividades, inicial, final, aquisicao_atletas: players, captacao} = FIN.caixa;
+  const max = Math.max(...atividades.flatMap(item => [Math.abs(item.atual), Math.abs(item.anterior)]));
+  const track = (value, cls) => {
+    const size = Math.abs(value) / max * 32;
+    const bar = value >= 0 ? `left:50%; width:${size}%` : `left:${50 - size}%; width:${size}%`;
+    const label = value >= 0 ? `left:calc(${50 + size}% + 6px)` : `right:calc(${50 + size}% + 6px)`;
+    return `<div class="cash-track ${cls}"><i class="${value >= 0 ? 'pos' : 'neg'}" style="${bar}"></i><span style="${label}">${value < 0 ? '−' : '+'}${millions(value)}</span></div>`;
+  };
+  $('cashFlow').innerHTML = atividades.map(item => `<div class="cash-row" title="${item.nome}: ${minus(item.atual)}${money(item.atual)} em ${FIN.exercicio} e ${minus(item.anterior)}${money(item.anterior)} em ${FIN.comparativo}">
+      <div class="pair-label"><b>${item.nome}</b><small>${item.detalhe}</small></div>
+      <div class="cash-bars">${track(item.atual, 'current')}${track(item.anterior, 'previous')}</div>
+    </div>`).join('');
+  $('cashFacts').innerHTML = factCards([
+    {label: 'Caixa no fim do ano', value: money(final.atual), note: `${money(inicial.atual)} no fim de ${FIN.comparativo}`},
+    {label: 'Compra de direitos', value: money(players.atual), note: `${money(players.anterior)} em ${FIN.comparativo}`},
+    {label: 'Empréstimos captados', value: money(captacao.atual), note: `${money(captacao.anterior)} em ${FIN.comparativo}`}
+  ]);
+}
+
+function renderSsf() {
+  $('ssfList').innerHTML = FIN.ssf.map(item => `<div class="ssf-row ${item.conforme ? 'ok' : 'fail'}">
+      <i aria-hidden="true">${item.conforme ? '✓' : '!'}</i>
+      <div><b>${item.indicador}</b><small>Exigência na Série B: ${item.limite}</small></div>
+      <div class="ssf-result"><strong>${item.apurado}</strong><span>${item.conforme ? 'Conforme' : 'Não conforme'}</span></div>
+    </div>`).join('');
+  const limits = FIN.ssf_limites.map((item, index, all) => `${item.limite}% ${index === all.length - 1 ? 'a partir de' : 'em'} ${item.ano}`);
+  const debtIssue = FIN.ssf.some(item => /Endividamento/.test(item.indicador) && !item.conforme);
+  $('ssfNote').textContent = `O limite do endividamento de curto prazo cai para ${listJoin(limits)}.` +
+    (debtIssue ? ' Segundo o clube, o desenquadramento vem de dívidas tributárias que foram para a Dívida Ativa após a perda do parcelamento Profut; a gestão negocia o reparcelamento.' : '');
+}
+
+function renderFinance() {
+  if (!FIN) {
+    $('financas').hidden = true;
+    document.querySelector('nav a[href="#financas"]').hidden = true;
+    return;
+  }
+  document.querySelectorAll('.year-current').forEach(element => { element.textContent = FIN.exercicio; });
+  document.querySelectorAll('.year-previous').forEach(element => { element.textContent = FIN.comparativo; });
+  renderFinanceKpis();
+
+  const highlight = (name) => FIN.destaques_receita.find(item => item.nome === name);
+  const ticket = highlight('Bilheteria');
+  const lfu = highlight('Adesão à LFU');
+  $('revenueBars').innerHTML = pairRows(FIN.receitas, true, FIN.faturamento.atual);
+  $('revenueFacts').innerHTML = factCards([
+    {label: 'Receita recorrente', value: money(FIN.receita_recorrente.atual), note: `${changeLabel(variation(FIN.receita_recorrente))} sem a adesão à LFU`},
+    {label: 'Bilheteria', value: money(ticket.atual), note: `${changeLabel(variation(ticket))} vs. ${FIN.comparativo}`},
+    {label: 'Adesão à LFU', value: money(lfu.atual), note: `${changeLabel(variation(lfu))} vs. ${FIN.comparativo}`}
+  ]);
+
+  const costTotal = FIN.custos.reduce((sum, item) => sum + Math.abs(item.atual), 0);
+  $('costBars').innerHTML = pairRows(FIN.custos, false, costTotal);
+  const footballItems = [...FIN.custo_futebol].sort((a, b) => Math.abs(b.atual) - Math.abs(a.atual));
+  const footballMax = Math.abs(footballItems[0].atual);
+  $('footballCostBars').innerHTML = footballItems.map(item => `<div class="mini-bar" title="${item.nome}: ${money(item.atual)} em ${FIN.exercicio} e ${money(item.anterior)} em ${FIN.comparativo}">
+      <span>${item.nome}</span>
+      <div><i style="width:${Math.abs(item.atual) / footballMax * 78}%"></i><b>${millions(item.atual)}</b></div>
+    </div>`).join('');
+
+  renderWaterfall();
+
+  const {balanco} = FIN;
+  $('debtBars').innerHTML = pairRows(FIN.divida.itens, false, FIN.divida.total.atual);
+  $('balanceFacts').innerHTML = factCards([
+    {label: 'Patrimônio social', value: `${minus(balanco.patrimonio_social.atual)}${money(balanco.patrimonio_social.atual)}`, note: balanco.patrimonio_social.atual < 0 ? 'Passivos maiores que os ativos' : 'Ativos maiores que os passivos'},
+    {label: 'Empréstimos bancários', value: money(balanco.emprestimos.atual), note: `${money(balanco.emprestimos.anterior)} em ${FIN.comparativo}`},
+    {label: 'Subvenções recebidas', value: money(balanco.subvencoes.atual), note: 'Ficam fora da conta da dívida'}
+  ]);
+
+  renderCashFlow();
+  renderSsf();
+
+  const football = FIN.custos.find(item => item.nome === 'Custo do futebol');
+  const driver = [...FIN.custo_futebol].sort((a, b) => (Math.abs(b.atual) - Math.abs(b.anterior)) - (Math.abs(a.atual) - Math.abs(a.anterior)))[0];
+  const recurring = variation(FIN.receita_recorrente);
+  const footballChange = variation(football);
+  const {resultado} = FIN;
+  const deficitShrank = resultado.atual < 0 && resultado.anterior < 0 && Math.abs(resultado.atual) < Math.abs(resultado.anterior);
+  const outcome = deficitShrank
+    ? `O déficit caiu de ${money(resultado.anterior)} para ${money(resultado.atual)} graças à venda de atletas (${money(FIN.venda_atletas.atual)})` +
+      (FIN.waiver_mi ? ` e à dispensa dos juros dos mútuos, que evitou cerca de R$ ${FIN.waiver_mi.toLocaleString('pt-BR')} mi em encargos.` : '.')
+    : `O exercício terminou com ${resultado.atual < 0 ? 'déficit' : 'superávit'} de ${money(resultado.atual)}.`;
+  $('financeInsight').innerHTML = `A receita recorrente (sem a LFU) ${recurring >= 0 ? 'cresceu' : 'caiu'} <b>${oneDecimal(Math.abs(recurring))}%</b>, ` +
+    `enquanto o custo do futebol ${footballChange >= 0 ? 'subiu' : 'caiu'} <b>${oneDecimal(Math.abs(footballChange))}%</b> ` +
+    `(maior aumento: ${driver.nome.toLocaleLowerCase('pt-BR')}, de ${money(driver.anterior)} para ${money(driver.atual)}). ${outcome}`;
+  $('financeSource').textContent = `Fonte: ${FIN.fonte}, auditadas. Números extraídos do PDF por extrair_financas.py. A dívida é o passivo total sem as subvenções recebidas, critério do relatório da administração.`;
+}
+
 function renderAll() {
   applyFilter('Todos');
   renderChart(matches);
@@ -596,6 +806,7 @@ function renderAll() {
   renderProjection();
   renderProbabilities();
   renderPerformance();
+  renderFinance();
 }
 
 $('modelInfoButton').addEventListener('click', () => {

@@ -20,6 +20,7 @@
         <a href="#probabilidades">Probabilidades</a>
         <a href="#evolucao">Evolução</a>
         <a href="#jogos">Jogos</a>
+        <a href="#financas">Finanças</a>
       </nav>
     </header>
 
@@ -309,6 +310,105 @@
         </div>
         <p class="empty-state" id="emptyState" hidden>Nenhum jogo encontrado.</p>
       </section>
+
+      <section class="finance-section" id="financas">
+        <div class="finance-head">
+          <div>
+            <p class="section-kicker">RAIO-X FINANCEIRO · <span class="year-current">--</span></p>
+            <h2>As contas do clube</h2>
+          </div>
+          <p>Demonstrações financeiras auditadas, comparadas com o exercício anterior. Nos gráficos, valores em R$ milhões.</p>
+        </div>
+
+        <div class="kpi-grid finance-kpis" id="financeKpis"></div>
+
+        <div class="finance-grid">
+          <article class="panel">
+            <div class="panel-head compact">
+              <div>
+                <p class="section-kicker">DE ONDE VEM O DINHEIRO</p>
+                <h2>Receitas</h2>
+              </div>
+              <div class="legend pair-legend"><span><i class="current"></i><span class="year-current">--</span></span><span><i class="previous"></i><span class="year-previous">--</span></span></div>
+            </div>
+            <div class="pair-list" id="revenueBars"></div>
+            <div class="finance-facts" id="revenueFacts"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head compact">
+              <div>
+                <p class="section-kicker">PARA ONDE VAI</p>
+                <h2>Custos e despesas</h2>
+              </div>
+              <div class="legend pair-legend"><span><i class="current"></i><span class="year-current">--</span></span><span><i class="previous"></i><span class="year-previous">--</span></span></div>
+            </div>
+            <div class="pair-list" id="costBars"></div>
+            <div class="finance-subhead">DENTRO DO CUSTO DO FUTEBOL · <span class="year-current">--</span></div>
+            <div class="mini-bars" id="footballCostBars"></div>
+          </article>
+
+          <article class="panel finance-wide">
+            <div class="panel-head compact">
+              <div>
+                <p class="section-kicker">DA RECEITA AO RESULTADO</p>
+                <h2>DRE em cascata</h2>
+              </div>
+              <div class="legend wf-legend"><span><i class="in"></i>Entradas</span><span><i class="out"></i>Saídas</span><span><i class="result"></i>Resultado</span></div>
+            </div>
+            <div class="dre-layout">
+              <div class="waterfall" id="dreWaterfall" role="img" aria-label="Cascata da demonstração do resultado"></div>
+              <div class="table-wrap finance-table">
+                <table>
+                  <thead><tr><th>Conta (R$ mi)</th><th class="year-current">--</th><th class="year-previous">--</th><th>Variação</th></tr></thead>
+                  <tbody id="dreTable"></tbody>
+                </table>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head compact">
+              <div>
+                <p class="section-kicker">ENDIVIDAMENTO</p>
+                <h2>Perfil da dívida</h2>
+              </div>
+              <div class="legend pair-legend"><span><i class="current"></i><span class="year-current">--</span></span><span><i class="previous"></i><span class="year-previous">--</span></span></div>
+            </div>
+            <div class="pair-list" id="debtBars"></div>
+            <div class="finance-facts" id="balanceFacts"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head compact">
+              <div>
+                <p class="section-kicker">CAIXA</p>
+                <h2>Fluxo de caixa</h2>
+              </div>
+              <div class="legend pair-legend"><span><i class="current"></i><span class="year-current">--</span></span><span><i class="previous"></i><span class="year-previous">--</span></span></div>
+            </div>
+            <div class="cash-flow" id="cashFlow"></div>
+            <div class="finance-facts" id="cashFacts"></div>
+          </article>
+
+          <article class="panel finance-wide">
+            <div class="panel-head compact">
+              <div>
+                <p class="section-kicker">FAIR PLAY FINANCEIRO</p>
+                <h2>Indicadores do SSF</h2>
+              </div>
+            </div>
+            <div class="ssf-list" id="ssfList"></div>
+            <p class="ssf-note" id="ssfNote"></p>
+          </article>
+        </div>
+
+        <div class="analysis-note finance-note">
+          <span>LEITURA FINANCEIRA</span>
+          <p id="financeInsight"></p>
+        </div>
+        <p class="finance-source" id="financeSource"></p>
+      </section>
     </main>
 
     <footer>
@@ -316,6 +416,7 @@
       <span>Fonte: base local de jogos</span>
     </footer>
   </div>
+  <script src="financas_2025.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

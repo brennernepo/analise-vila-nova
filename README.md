@@ -5,7 +5,7 @@
 <h1 align="center">Dashboard Gerencial — Vila Nova na Série B 2026</h1>
 
 <p align="center">
-  Projeto de análise de dados esportivos que transforma os resultados da campanha do Vila Nova em indicadores de desempenho, tendências e cenários probabilísticos.
+  Projeto de análise de dados esportivos que transforma os resultados da campanha do Vila Nova em indicadores de desempenho, tendências e cenários probabilísticos, com um raio-x das finanças do clube.
 </p>
 
 <p align="center">
@@ -22,6 +22,8 @@
 Esta dashboard acompanha a campanha do Vila Nova Futebol Clube na Série B de 2026 sob uma perspectiva gerencial. O painel consolida os resultados jogo a jogo, compara o desempenho dentro e fora de casa e converte a campanha em informações úteis para tomada de decisão.
 
 Além dos indicadores tradicionais, o projeto apresenta projeções para as rodadas finais e um modelo probabilístico para estimar as chances de acesso, chegada ao G6 e rebaixamento.
+
+A seção **Raio-X financeiro** traz os números das demonstrações financeiras auditadas de 2025, extraídos do PDF publicado pelo clube: receitas, custos, DRE, endividamento, fluxo de caixa e os indicadores do Fair Play Financeiro da CBF (SSF).
 
 ## Panorama analisado
 
@@ -50,6 +52,30 @@ Os dados representam o recorte disponível até 25 de setembro de 2026 (30ª rod
 - O intervalo mais provável do modelo concentra 80% dos cenários entre **64 e 73 pontos**, com mediana de **68 pontos**.
 - As probabilidades estimadas no recorte atual são **91,8% de acesso** (84,4% direto e 7,4% via playoffs), **99,2% de chegada ao G6** e **0% de rebaixamento**, já que a campanha superou a faixa de risco.
 
+## Raio-X financeiro 2025
+
+![Raio-X financeiro](financas-preview.png)
+
+| Indicador | 2025 | 2024 |
+|---|---:|---:|
+| Faturamento total (receitas + venda de atletas) | R$ 47,4 mi | R$ 43,7 mi |
+| Receita operacional líquida | R$ 38,4 mi | R$ 40,4 mi |
+| Receita recorrente (sem a adesão à LFU) | R$ 25,5 mi | R$ 21,2 mi |
+| Venda de atletas | R$ 8,4 mi | R$ 2,8 mi |
+| Custo do futebol | R$ 35,5 mi | R$ 25,8 mi |
+| Resultado do exercício | déficit de R$ 2,8 mi | déficit de R$ 5,4 mi |
+| Dívida total | R$ 155,4 mi | R$ 146,1 mi |
+| Investimento em direitos de atletas | R$ 18,5 mi | R$ 9,6 mi |
+| Caixa no fim do ano | R$ 16 mil | R$ 312 mil |
+
+- A receita recorrente, sem a adesão à LFU, cresceu **20,1%**, com a bilheteria subindo **72,4%** e os patrocínios **46,5%**.
+- A venda de atletas **triplicou**, de R$ 2,8 mi para R$ 8,4 mi.
+- O custo do futebol subiu **37,9%**, e o maior aumento veio da amortização dos direitos de atletas (de R$ 5,6 mi para R$ 12,1 mi).
+- As despesas financeiras caíram **66,6%** porque os conselheiros dispensaram os juros dos mútuos em 2025, evitando cerca de **R$ 9,7 mi** em encargos.
+- Com isso, o déficit caiu de **R$ 5,4 mi para R$ 2,8 mi**.
+- A dívida soma **R$ 155,4 mi**, dos quais 58% são mútuos com conselheiros, e o patrimônio social é negativo em R$ 62,3 mi.
+- No Fair Play Financeiro, o clube cumpre 3 de 4 indicadores. A exceção é o endividamento de curto prazo, de **115,5%**, cujo limite cai até 45% em 2030.
+
 ## O que a dashboard entrega
 
 - KPIs de pontos, aproveitamento, média por jogo e saldo de gols;
@@ -63,7 +89,11 @@ Os dados representam o recorte disponível até 25 de setembro de 2026 (30ª rod
 - simulação de metas de pontos;
 - cenários probabilísticos de acesso, G6 e rebaixamento;
 - próximos adversários, com as datas dos jogos já agendados;
-- tabela completa com busca por adversário e filtros por mando de campo.
+- tabela completa com busca por adversário e filtros por mando de campo;
+- raio-x financeiro com faturamento, resultado, dívida e investimento no elenco;
+- receitas, custos e dívida comparados com o ano anterior;
+- DRE em cascata, da receita líquida ao resultado do exercício;
+- fluxo de caixa por atividade e indicadores do Fair Play Financeiro (SSF).
 
 ## Metodologia
 
@@ -89,6 +119,15 @@ Referências adotadas no modelo:
 
 Essas faixas são referências analíticas e não representam cortes garantidos. O modelo não considera a campanha dos demais clubes, critérios de desempate ou a força individual dos adversários.
 
+### Dados financeiros
+
+O script <code>extrair_financas.py</code> lê o texto do PDF das demonstrações financeiras com <code>pdfplumber</code> e grava <code>financas_2025.js</code>, carregado pelo painel. Antes de gravar, ele confere se os números fecham: itens de cada nota contra seus subtotais, notas contra a DRE, ativo contra passivo e patrimônio, variação do caixa e movimentação dos direitos de atletas. Diferenças de até R$ 1 mil são arredondamentos do próprio documento.
+
+- **Faturamento total:** receitas brutas da nota 15 mais o resultado da venda de atletas (nota 19);
+- **receita recorrente:** receita líquida sem a adesão ao condomínio da LFU;
+- **dívida:** passivo circulante e não circulante, sem as subvenções recebidas, como no relatório da administração. Os componentes foram recalculados a partir do balanço e das notas 9 a 11. Por isso, "outros passivos" aparece como R$ 18,3 mi. No gráfico do relatório, esse item aparece como R$ 17,9 mi, e as parcelas somam R$ 155,1 mi em vez do total de R$ 155,4 mi;
+- **Fair Play Financeiro:** os indicadores e limites vêm do quadro "Sustentabilidade Financeira - SSF" do relatório da administração.
+
 ## Fontes de dados
 
 O script <code>coleta_detalhada.py</code> gera sempre o mesmo CSV a partir de uma de duas APIs REST:
@@ -98,9 +137,12 @@ O script <code>coleta_detalhada.py</code> gera sempre o mesmo CSV a partir de um
 
 As duas fontes foram comparadas no jogo Vila Nova 4 × 3 Náutico (14ª rodada): placar, placar do intervalo, finalizações, passes, escanteios, faltas e cartões coincidem.
 
+Os dados financeiros vêm do **Relatório Anual da Administração e Demonstrações Financeiras 2025** do Vila Nova Futebol Clube, com relatório do auditor independente, publicado pelo clube.
+
 ## Tecnologias utilizadas
 
 - **Python e Pandas:** coleta, tratamento dos dados e criação de métricas;
+- **pdfplumber:** extração dos números das demonstrações financeiras em PDF;
 - **Streamlit:** publicação e disponibilização da aplicação;
 - **JavaScript:** cálculos, filtros, simulações e renderização dos gráficos;
 - **HTML e CSS:** estrutura, responsividade e identidade visual;
@@ -113,6 +155,9 @@ As duas fontes foram comparadas no jogo Vila Nova 4 × 3 Náutico (14ª rodada):
 ├── app.js
 ├── coleta_detalhada.py
 ├── dashboard-preview.png
+├── extrair_financas.py
+├── financas-preview.png
+├── financas_2025.js
 ├── index.html
 ├── README.md
 ├── requirements.txt
@@ -156,6 +201,16 @@ python coleta_detalhada.py
 
 Se a busca automática do clube falhar, defina também <code>$env:VILA_NOVA_ID="tm_..."</code>. A chave não deve ser gravada no código nem enviada ao GitHub. Após atualizar o CSV e enviar um novo commit para a branch <code>main</code>, o Streamlit Community Cloud realiza o redeploy da aplicação.
 
+### Dados financeiros
+
+Baixe o PDF das demonstrações financeiras no site do clube e rode o extrator, informando o caminho do arquivo:
+
+<pre><code>python -m pip install pdfplumber
+python extrair_financas.py caminho/para/demonstracoes-contabeis-2025.pdf
+</code></pre>
+
+O script mostra cada conferência e só grava <code>financas_2025.js</code> se todos os totais fecharem. Depois, basta enviar o arquivo gerado ao GitHub.
+
 ## Publicar no Streamlit Community Cloud
 
 1. Envie esta pasta para um repositório público no GitHub.
@@ -166,7 +221,8 @@ Se a busca automática do clube falhar, defina também <code>$env:VILA_NOVA_ID="
 ## Competências demonstradas
 
 - coleta e tratamento de dados via API;
-- definição e cálculo de indicadores esportivos;
+- extração e validação de dados de demonstrações financeiras em PDF;
+- definição e cálculo de indicadores esportivos e financeiros;
 - análise exploratória e comunicação de insights;
 - modelagem probabilística de cenários;
 - construção de dashboards responsivos;
