@@ -269,7 +269,7 @@ Depois, envie ao GitHub os arquivos gerados: <code>vila_nova_serie_b_2026_todos_
 
 ### Atualização automática
 
-O workflow <code>.github/workflows/atualizar-dados.yml</code> roda a coleta no GitHub Actions duas vezes por dia (03:30 e 15:30 em Brasília). Quando há jogo novo, ele envia os arquivos gerados para a <code>main</code>, e o Streamlit Community Cloud republica o painel. Sem jogo novo, nada é enviado.
+O workflow <code>.github/workflows/atualizar-dados.yml</code> roda a coleta no GitHub Actions três vezes por dia (22:00, 03:30 e 15:30 em Brasília). Quando há jogo novo, ele envia os arquivos gerados para a <code>main</code>, e o Streamlit Community Cloud republica o painel. Sem jogo novo, nada é enviado.
 
 Para pedir uma atualização na hora: aba **Actions** do repositório → **Atualizar dados** → **Run workflow**. O mesmo botão aparece no app do GitHub para celular.
 

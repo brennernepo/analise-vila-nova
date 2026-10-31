@@ -4,7 +4,9 @@ name: Atualizar dados
 
 on:
   schedule:
-    # Horários em UTC: 03:30 e 15:30 em Brasília, depois dos jogos da noite e dos da manhã/tarde.
+    # Horários em UTC: 22:00, 03:30 e 15:30 em Brasília. O das 22h pega os jogos da noite no mesmo dia;
+    # o das 03:30 cobre os que terminam mais tarde ou atrasam na ESPN.
+    - cron: "0 1 * * *"
     - cron: "30 6 * * *"
     - cron: "30 18 * * *"
   # Botão "Run workflow" na aba Actions, para pedir uma atualização na hora.
