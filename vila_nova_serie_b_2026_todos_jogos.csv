@@ -29,11 +29,11 @@ espn_401860326,2026-09-10,finished,Goiás,Casa,2,0,V,0,0,2,0,E,Estádio Onésio 
 espn_401860333,2026-09-14,finished,Avaí,Fora,1,1,E,1,1,0,0,E,Estádio da Ressacada,Florianópolis,0.556,11,2,6,3,,,4,14,0,554,464,1,0,1,0.444,8,2,4,9,431,357,1,0,0.8375,0.1818,0.0909,0.8283,0.25,0.125
 espn_401860344,2026-09-18,finished,América Mineiro,Casa,1,0,V,1,0,0,0,V,Estádio Onésio Brasileiro Alvarenga,Goiânia,0.406,14,2,4,8,,,5,20,2,331,258,3,0,5,0.594,20,5,5,16,479,407,2,0,0.7795,0.1429,0.0714,0.8497,0.25,0.0
 espn_401860356,2026-09-25,finished,Londrina,Casa,2,0,V,1,0,1,0,V,Estádio Onésio Brasileiro Alvarenga,Goiânia,0.564,23,9,8,6,,,9,18,1,473,401,0,0,4,0.436,10,3,5,9,365,285,3,0,0.8478,0.3913,0.087,0.7808,0.3,0.0
-espn_401860370,2026-10-03,scheduled,Botafogo-SP,Fora,,,,,,,,,Estádio Santa Cruz,Ribeirão Preto,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-espn_401860376,2026-10-07,scheduled,Cuiabá,Casa,,,,,,,,,Estádio Onésio Brasileiro Alvarenga,Goiânia,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-espn_401860382,2026-10-11,scheduled,Náutico,Fora,,,,,,,,,Estádio dos Aflitos,Recife,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-espn_401860396,2026-10-18,scheduled,Novorizontino,Casa,,,,,,,,,Estádio Onésio Brasileiro Alvarenga,Goiânia,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-espn_401860407,2026-10-23,scheduled,São Bernardo,Fora,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-espn_401860416,2026-10-30,scheduled,Juventude,Casa,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-espn_401860424,2026-11-06,scheduled,Criciúma,Casa,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-espn_401860437,2026-11-14,scheduled,Fortaleza,Fora,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+espn_401860370,2026-10-03,finished,Botafogo-SP,Fora,1,0,V,1,0,0,0,V,Estádio Santa Cruz,Ribeirão Preto,0.382,5,3,1,1,,,1,14,3,305,221,3,0,3,0.618,16,3,12,19,460,377,2,0,0.7246,0.6,0.2,0.8196,0.1875,0.0
+espn_401860376,2026-10-07,finished,Cuiabá,Casa,0,0,E,0,0,0,0,E,Estádio Onésio Brasileiro Alvarenga,Goiânia,0.49,13,3,7,3,,,8,19,2,331,257,4,0,1,0.51,9,1,4,16,350,278,1,0,0.7764,0.2308,0.0,0.7943,0.1111,0.0
+espn_401860382,2026-10-11,finished,Náutico,Fora,2,0,V,2,0,0,0,V,Estádio dos Aflitos,Recife,0.424,12,4,5,3,,,4,16,1,359,272,4,0,3,0.576,16,3,7,18,475,394,2,0,0.7577,0.3333,0.1667,0.8295,0.1875,0.0
+espn_401860396,2026-10-18,finished,Novorizontino,Casa,2,2,E,0,1,2,1,D,Estádio Onésio Brasileiro Alvarenga,Goiânia,0.569,11,5,2,4,,,6,13,1,433,348,2,0,2,0.431,11,4,4,18,331,223,3,0,0.8037,0.4545,0.1818,0.6737,0.3636,0.1818
+espn_401860407,2026-10-24,finished,São Bernardo,Fora,2,3,D,1,1,1,2,E,Estádio Primeiro de Maio,São Bernardo do Campo ,0.349,13,5,4,4,,,3,15,1,323,257,1,1,3,0.651,15,7,8,16,585,514,2,0,0.7957,0.3846,0.1538,0.8786,0.4667,0.2
+espn_401860416,2026-10-31,scheduled,Juventude,Casa,,,,,,,,,Estádio Onésio Brasileiro Alvarenga,Goiânia,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+espn_401860424,2026-11-07,scheduled,Criciúma,Casa,,,,,,,,,Estádio Onésio Brasileiro Alvarenga,Goiânia,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+espn_401860437,2026-11-14,scheduled,Fortaleza,Fora,,,,,,,,,Arena Castelão,Fortaleza,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

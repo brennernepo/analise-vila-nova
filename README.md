@@ -41,6 +41,8 @@ A seção **Raio-X financeiro** traz os números das demonstrações financeiras
 
 Os dados do Vila Nova vão até 25 de setembro de 2026 (30ª rodada). A classificação e a simulação usam os jogos de todos os clubes encerrados até 26 de setembro de 2026.
 
+Este panorama e os insights abaixo são um retrato da 30ª rodada. O painel em si é atualizado automaticamente após cada rodada (veja [Atualização automática](#atualização-automática)).
+
 ## Principais insights
 
 - **Rendimento em casa:** 84,4% de aproveitamento no OBA, contra 35,6% fora.
@@ -264,6 +266,12 @@ python coleta_detalhada.py
 Se a busca automática do clube falhar, defina também <code>$env:VILA_NOVA_ID="tm_..."</code>. A chave não deve ser gravada no código nem enviada ao GitHub.
 
 Depois, envie ao GitHub os arquivos gerados: <code>vila_nova_serie_b_2026_todos_jogos.csv</code>, <code>serie_b_2026_jogos.csv</code>, <code>serie_b_2026_probabilidades.csv</code> e <code>simulacao_2026.js</code>. O Streamlit Community Cloud atualiza a aplicação sozinho.
+
+### Atualização automática
+
+O workflow <code>.github/workflows/atualizar-dados.yml</code> roda a coleta no GitHub Actions duas vezes por dia (03:30 e 15:30 em Brasília). Quando há jogo novo, ele envia os arquivos gerados para a <code>main</code>, e o Streamlit Community Cloud republica o painel. Sem jogo novo, nada é enviado.
+
+Para pedir uma atualização na hora: aba **Actions** do repositório → **Atualizar dados** → **Run workflow**. O mesmo botão aparece no app do GitHub para celular.
 
 ### Dados financeiros
 
