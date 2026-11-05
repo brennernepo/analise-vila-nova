@@ -1,6 +1,6 @@
 // Gerado por simulacao.py. Para atualizar, rode o script novamente em vez de editar este arquivo.
 window.VILA_NOVA_SIMULACAO = {
-  "gerado_em": "2026-11-03",
+  "gerado_em": "2026-11-05",
   "recorte": "2026-11-02",
   "simulacoes": 100000,
   "semente": 20261102,
