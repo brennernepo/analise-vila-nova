@@ -1,13 +1,13 @@
 // Gerado por simulacao.py. Para atualizar, rode o script novamente em vez de editar este arquivo.
 window.VILA_NOVA_SIMULACAO = {
-  "gerado_em": "2026-11-05",
-  "recorte": "2026-11-02",
+  "gerado_em": "2026-11-06",
+  "recorte": "2026-11-05",
   "simulacoes": 100000,
-  "semente": 20261102,
+  "semente": 20261105,
   "base_curta": false,
   "erro_mc_acesso": 0.0015,
-  "jogos_disputados": 360,
-  "jogos_restantes": 20,
+  "jogos_disputados": 361,
+  "jogos_restantes": 19,
   "regulamento": "REC Série B 2026 da CBF, Arts. 5, 12 e 13",
   "desempate": [
     "pontos",
@@ -20,7 +20,7 @@ window.VILA_NOVA_SIMULACAO = {
   "modelo": {
     "descricao": "Poisson com forças de ataque e defesa por clube e vantagem de mando, estimadas com encolhimento",
     "encolhimento": 5,
-    "vantagem_mando": 1.319,
+    "vantagem_mando": 1.329,
     "validacao": {
       "0.5": -1.0065,
       "1": -1.0062,
@@ -37,37 +37,37 @@ window.VILA_NOVA_SIMULACAO = {
   "sensibilidade": [
     {
       "variante": "principal (encolhimento 5)",
-      "acesso": 0.6849,
-      "acesso_direto": 0.2119
+      "acesso": 0.6856,
+      "acesso_direto": 0.2172
     },
     {
       "variante": "encolhimento fraco (1)",
-      "acesso": 0.6864,
-      "acesso_direto": 0.2072
+      "acesso": 0.6831,
+      "acesso_direto": 0.2094
     },
     {
       "variante": "encolhimento forte (30)",
-      "acesso": 0.6812,
-      "acesso_direto": 0.233
+      "acesso": 0.6815,
+      "acesso_direto": 0.2335
     },
     {
       "variante": "peso maior para jogos recentes (meia-vida de 60 dias)",
-      "acesso": 0.6944,
-      "acesso_direto": 0.2135
+      "acesso": 0.6921,
+      "acesso_direto": 0.2226
     }
   ],
   "faixa_acesso": {
-    "min": 0.6812,
-    "max": 0.6944
+    "min": 0.6815,
+    "max": 0.6921
   },
   "liga": {
-    "aproveitamento_mandante": 0.537,
-    "aproveitamento_visitante": 0.3731,
-    "diferenca_pp": 16.4
+    "aproveitamento_mandante": 0.5383,
+    "aproveitamento_visitante": 0.3721,
+    "diferenca_pp": 16.6
   },
   "cortes": {
     "segundo": {
-      "p10": 67,
+      "p10": 66,
       "mediana": 68,
       "p90": 70
     },
@@ -91,11 +91,11 @@ window.VILA_NOVA_SIMULACAO = {
     "vitorias": 18,
     "saldo": 14,
     "pontos_medios": 65.8,
-    "titulo": 0.0281,
-    "acesso_direto": 0.2119,
+    "titulo": 0.03,
+    "acesso_direto": 0.2172,
     "g6": 1.0,
-    "acesso_playoff": 0.473,
-    "acesso": 0.6849,
+    "acesso_playoff": 0.4684,
+    "acesso": 0.6856,
     "rebaixamento": 0.0
   },
   "pontos_finais": {
@@ -105,20 +105,20 @@ window.VILA_NOVA_SIMULACAO = {
     "cobertura": 1.0
   },
   "pontos_dist": {
-    "63": 0.11057,
-    "64": 0.20184,
-    "65": 0.08683,
-    "66": 0.26244,
-    "67": 0.21277,
-    "69": 0.12555
+    "63": 0.10801,
+    "64": 0.20154,
+    "65": 0.08603,
+    "66": 0.26485,
+    "67": 0.21327,
+    "69": 0.1263
   },
   "curva_top2": {
     "63": 0.0,
     "64": 0.0,
     "65": 0.0,
-    "66": 0.1507,
-    "67": 0.3008,
-    "69": 0.8632
+    "66": 0.1597,
+    "67": 0.3051,
+    "69": 0.8696
   },
   "curva_g6": {
     "63": 1.0,
@@ -129,11 +129,11 @@ window.VILA_NOVA_SIMULACAO = {
     "69": 1.0
   },
   "posicoes": [
-    0.0281,
-    0.1838,
-    0.3879,
-    0.2313,
-    0.1689,
+    0.03,
+    0.1872,
+    0.3866,
+    0.2306,
+    0.1656,
     0.0,
     0.0,
     0.0,
@@ -155,17 +155,17 @@ window.VILA_NOVA_SIMULACAO = {
       "data": "2026-11-07",
       "adversario": "Criciúma",
       "mando": "Casa",
-      "vitoria": 0.4447,
+      "vitoria": 0.4464,
       "empate": 0.2997,
-      "derrota": 0.2556
+      "derrota": 0.2539
     },
     {
       "data": "2026-11-14",
       "adversario": "Fortaleza",
       "mando": "Fora",
-      "vitoria": 0.2823,
-      "empate": 0.2909,
-      "derrota": 0.4267
+      "vitoria": 0.2804,
+      "empate": 0.291,
+      "derrota": 0.4286
     }
   ],
   "clubes": [
@@ -177,10 +177,10 @@ window.VILA_NOVA_SIMULACAO = {
       "vitorias": 19,
       "saldo": 33,
       "pontos_medios": 70.4,
-      "titulo": 0.787,
-      "acesso_direto": 0.9476,
+      "titulo": 0.7905,
+      "acesso_direto": 0.9481,
       "g6": 1.0,
-      "acesso_playoff": 0.042,
+      "acesso_playoff": 0.0416,
       "acesso": 0.9897,
       "rebaixamento": 0.0
     },
@@ -192,11 +192,11 @@ window.VILA_NOVA_SIMULACAO = {
       "vitorias": 18,
       "saldo": 22,
       "pontos_medios": 68.3,
-      "titulo": 0.1612,
-      "acesso_direto": 0.7182,
+      "titulo": 0.1548,
+      "acesso_direto": 0.7109,
       "g6": 1.0,
-      "acesso_playoff": 0.212,
-      "acesso": 0.9302,
+      "acesso_playoff": 0.2168,
+      "acesso": 0.9278,
       "rebaixamento": 0.0
     },
     {
@@ -207,11 +207,11 @@ window.VILA_NOVA_SIMULACAO = {
       "vitorias": 18,
       "saldo": 14,
       "pontos_medios": 65.8,
-      "titulo": 0.0281,
-      "acesso_direto": 0.2119,
+      "titulo": 0.03,
+      "acesso_direto": 0.2172,
       "g6": 1.0,
-      "acesso_playoff": 0.473,
-      "acesso": 0.6849,
+      "acesso_playoff": 0.4684,
+      "acesso": 0.6856,
       "rebaixamento": 0.0
     },
     {
@@ -222,11 +222,11 @@ window.VILA_NOVA_SIMULACAO = {
       "vitorias": 18,
       "saldo": 8,
       "pontos_medios": 64.3,
-      "titulo": 0.0181,
-      "acesso_direto": 0.0803,
+      "titulo": 0.0186,
+      "acesso_direto": 0.082,
       "g6": 1.0,
-      "acesso_playoff": 0.4585,
-      "acesso": 0.5389,
+      "acesso_playoff": 0.4578,
+      "acesso": 0.5398,
       "rebaixamento": 0.0
     },
     {
@@ -237,11 +237,11 @@ window.VILA_NOVA_SIMULACAO = {
       "vitorias": 16,
       "saldo": 12,
       "pontos_medios": 64.4,
-      "titulo": 0.0056,
-      "acesso_direto": 0.0419,
+      "titulo": 0.0061,
+      "acesso_direto": 0.0418,
       "g6": 1.0,
-      "acesso_playoff": 0.5086,
-      "acesso": 0.5505,
+      "acesso_playoff": 0.5089,
+      "acesso": 0.5507,
       "rebaixamento": 0.0
     },
     {
@@ -254,9 +254,9 @@ window.VILA_NOVA_SIMULACAO = {
       "pontos_medios": 58.1,
       "titulo": 0.0,
       "acesso_direto": 0.0,
-      "g6": 0.3527,
-      "acesso_playoff": 0.1053,
-      "acesso": 0.1053,
+      "g6": 0.3552,
+      "acesso_playoff": 0.1064,
+      "acesso": 0.1064,
       "rebaixamento": 0.0
     },
     {
@@ -269,9 +269,9 @@ window.VILA_NOVA_SIMULACAO = {
       "pontos_medios": 58.4,
       "titulo": 0.0,
       "acesso_direto": 0.0,
-      "g6": 0.2978,
-      "acesso_playoff": 0.0793,
-      "acesso": 0.0793,
+      "g6": 0.2975,
+      "acesso_playoff": 0.08,
+      "acesso": 0.08,
       "rebaixamento": 0.0
     },
     {
@@ -284,9 +284,9 @@ window.VILA_NOVA_SIMULACAO = {
       "pontos_medios": 58.1,
       "titulo": 0.0,
       "acesso_direto": 0.0,
-      "g6": 0.218,
-      "acesso_playoff": 0.0754,
-      "acesso": 0.0754,
+      "g6": 0.2167,
+      "acesso_playoff": 0.0745,
+      "acesso": 0.0745,
       "rebaixamento": 0.0
     },
     {
@@ -299,9 +299,9 @@ window.VILA_NOVA_SIMULACAO = {
       "pontos_medios": 57.9,
       "titulo": 0.0,
       "acesso_direto": 0.0,
-      "g6": 0.1259,
-      "acesso_playoff": 0.044,
-      "acesso": 0.044,
+      "g6": 0.1254,
+      "acesso_playoff": 0.0438,
+      "acesso": 0.0438,
       "rebaixamento": 0.0
     },
     {
@@ -314,14 +314,29 @@ window.VILA_NOVA_SIMULACAO = {
       "pontos_medios": 55.3,
       "titulo": 0.0,
       "acesso_direto": 0.0,
-      "g6": 0.0039,
-      "acesso_playoff": 0.0015,
-      "acesso": 0.0015,
+      "g6": 0.0038,
+      "acesso_playoff": 0.0013,
+      "acesso": 0.0013,
+      "rebaixamento": 0.0
+    },
+    {
+      "time": "Botafogo-SP",
+      "posicao": 11,
+      "pontos": 51,
+      "jogos": 37,
+      "vitorias": 14,
+      "saldo": 6,
+      "pontos_medios": 51.8,
+      "titulo": 0.0,
+      "acesso_direto": 0.0,
+      "g6": 0.0,
+      "acesso_playoff": 0.0,
+      "acesso": 0.0,
       "rebaixamento": 0.0
     },
     {
       "time": "Operário-PR",
-      "posicao": 11,
+      "posicao": 12,
       "pontos": 51,
       "jogos": 36,
       "vitorias": 14,
@@ -329,24 +344,9 @@ window.VILA_NOVA_SIMULACAO = {
       "pontos_medios": 54.5,
       "titulo": 0.0,
       "acesso_direto": 0.0,
-      "g6": 0.0016,
+      "g6": 0.0014,
       "acesso_playoff": 0.0004,
       "acesso": 0.0004,
-      "rebaixamento": 0.0
-    },
-    {
-      "time": "Botafogo-SP",
-      "posicao": 12,
-      "pontos": 48,
-      "jogos": 36,
-      "vitorias": 13,
-      "saldo": 2,
-      "pontos_medios": 50.6,
-      "titulo": 0.0,
-      "acesso_direto": 0.0,
-      "g6": 0.0,
-      "acesso_playoff": 0.0,
-      "acesso": 0.0,
       "rebaixamento": 0.0
     },
     {
@@ -386,7 +386,7 @@ window.VILA_NOVA_SIMULACAO = {
       "jogos": 36,
       "vitorias": 12,
       "saldo": -6,
-      "pontos_medios": 48.6,
+      "pontos_medios": 48.7,
       "titulo": 0.0,
       "acesso_direto": 0.0,
       "g6": 0.0,
@@ -407,7 +407,7 @@ window.VILA_NOVA_SIMULACAO = {
       "g6": 0.0,
       "acesso_playoff": 0.0,
       "acesso": 0.0,
-      "rebaixamento": 0.0102
+      "rebaixamento": 0.0106
     },
     {
       "time": "Avaí",
@@ -422,16 +422,16 @@ window.VILA_NOVA_SIMULACAO = {
       "g6": 0.0,
       "acesso_playoff": 0.0,
       "acesso": 0.0,
-      "rebaixamento": 0.9898
+      "rebaixamento": 0.9894
     },
     {
       "time": "Londrina",
       "posicao": 18,
       "pontos": 32,
-      "jogos": 36,
+      "jogos": 37,
       "vitorias": 8,
-      "saldo": -9,
-      "pontos_medios": 34.5,
+      "saldo": -13,
+      "pontos_medios": 33.5,
       "titulo": 0.0,
       "acesso_direto": 0.0,
       "g6": 0.0,
